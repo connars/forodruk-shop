@@ -102,7 +102,7 @@
     </section>
     <section>
         <div class="container">
-            <div class="benefits">
+            <div class="price">
                 <div class="title">
                     <p>Ціни</p>
                     <h4>Ціни на друк</h4>
@@ -112,10 +112,38 @@
     </section>
     <section>
         <div class="container">
-            <div class="benefits">
-                <div class="title">
+            <div class="reviews">
+                <div class="title reviews__title">
                     <p>Що про нас кажуть?</p>
                     <h4>Відгуки користувачів</h4>
+                </div>
+
+                <div class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide swiper-slide2">
+                        Slide 1
+                      </div>
+                      <div class="swiper-slide swiper-slide2">Slide 2</div>
+                      <div class="swiper-slide swiper-slide2">Slide 3</div>
+                      <div class="swiper-slide swiper-slide2">Slide 4</div>
+                      <div class="swiper-slide swiper-slide2">Slide 5</div>
+                      <div class="swiper-slide swiper-slide2">Slide 6</div>
+                      <div class="swiper-slide swiper-slide2">Slide 7</div>
+                      <div class="swiper-slide swiper-slide2">Slide 8</div>
+                      <div class="swiper-slide swiper-slide2">Slide 9</div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                  </div>
+
+
+            </div>
+            <div class="swiper-nav2">
+                <div class="swiper-button-next2 arrow">
+                    <img src="./prev.svg" alt="">
+                </div>
+                <div class="swiper-button-prev2 arrow">
+                    <img src="./next.svg" alt="">
                 </div>
             </div>
         </div>
@@ -143,6 +171,30 @@
     var swiper = new Swiper(".mySwiper", {
       effect: "cards",
       grabCursor: true,
+    });
+
+   
+    var swiper2 = new Swiper(".mySwiper2", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      slidesPerGroup: 1,
+      loop: true,
+      loopFillGroupWithBlank: true,
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //     clickable: true,
+    //   },
+      navigation: {
+        nextEl: ".swiper-button-next2",
+        prevEl: ".swiper-button-prev2",
+      },
+      breakpoints: {  
+        '1000': {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        }
+      },
     });
   </script>
 </body>

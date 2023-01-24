@@ -16,11 +16,11 @@ function animate() {
         lineTwo.style.position = "absolute";
         menu.style.gap = "0px";
     } else {
+        lineOne.style.position = "static";
+        lineTwo.style.position = "static";
+        menu.style.gap = "8px";
         lineOne.style.transform = "rotate(0deg)";
         lineTwo.style.transform = "rotate(0deg)";
-        lineOne.style.position = "relative";
-        lineTwo.style.position = "relative";
-        menu.style.gap = "8px";
     }
 
 }
