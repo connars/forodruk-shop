@@ -56,3 +56,9 @@ body {
     line-height: 55px;
     text-align: center;
 }
+
+@media screen and (max-width: 900px){
+    html {
+        overflow-x: hidden;
+    }
+}
