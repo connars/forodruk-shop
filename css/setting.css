@@ -1,0 +1,58 @@
+body {
+    background-color: var(--bg);
+    font-family: 'Manrope', sans-serif;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-btn {
+    padding: 20px;
+    border-radius: 15px 15px 15px 0px;
+    background-color: var(--green);
+
+    color: white;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: 0.055em;
+
+    color: #FFFFFF;
+}
+
+.main-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+}
+
+.title p {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: 0.075em;
+    color:var(--green)
+}
+
+.title h4{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 55px;
+    text-align: center;
+}
