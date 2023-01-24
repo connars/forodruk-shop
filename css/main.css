@@ -31,6 +31,7 @@
     top: 0;
 
     z-index: 9999;
+    visibility: hidden;
 }
 
 .burger {
@@ -62,6 +63,10 @@
         transition: 0.4s;
     }
 
+    .m-header {
+        visibility: visible;
+    }
+
     .active {
         transform: translateY(0%);
     }
@@ -78,10 +83,16 @@
         gap: 30px;
     }
     .header__wrapper {
+        height: 100vh;
         background-color: white;
         display: grid;
         z-index: 9;
         justify-content: center;
+    }
+
+    .header__nav-link {
+        font-size: 24px;
+        font-weight: 700;
     }
 }
 
