@@ -103,6 +103,14 @@
     height: 100%;
   }
 
+  @media screen and (max-width: 900px){
+    .swiper {
+        width: 250px;
+        height: 390px;
+      }
+}
+
+
   /* .swiper-slide:nth-child(1n) {
     background-color: rgb(206, 17, 17);
   } */
