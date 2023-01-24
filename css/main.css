@@ -103,7 +103,7 @@
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
 }
 
 .hero__left {
@@ -143,9 +143,21 @@
     .hero {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap-reverse;
+        /* flex-wrap: wrap-reverse; */
         align-items: center;
         align-content: center;
+    }
+
+    .hero__left h1 {
+        font-size: 38px;
+        line-height: 1.1;
+    }
+
+    .hero__left p {
+        font-size: 22px;
+    }
+    .hero__right {
+        margin-top: 40px;
     }
 }
 
