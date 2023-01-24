@@ -29,6 +29,8 @@
     position: fixed;
     width: 100%;
     top: 0;
+
+    z-index: 9999;
 }
 
 .burger {
@@ -39,12 +41,14 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    gap: 1px;
+    align-content: center;
+    gap: 8px;
     padding: 10px;
+    border-radius: 50%;
 }
 
 .line {
-    height: 2px;
+    height: 3px;
     width: 24px;
     background-color: white;
 }
@@ -55,6 +59,11 @@
         background-color: white;
         height: 100vh;
         transform: translateY(-100%);
+        transition: 0.4s;
+    }
+
+    .active {
+        transform: translateY(0%);
     }
 
     .header__left {
