@@ -14,14 +14,19 @@
     position: fixed;
     top: 45%;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.143);
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 30px 30px 0px;
     display: flex;
     transform: translateX(-50%);
     transition: 0.3s ease-in-out;
+    z-index: 999;
 }
 
 .themes.active {
     transform: translateY(0px);
+}
+
+.theme-two{
+
 }
 
 .current-theme {
@@ -55,7 +60,7 @@
 }
 
 .color-one {
-    background-color: var(--green);
+    background-color: #8BC34A;
     width: 25px;
     height: 25px;
     border-radius: 50%;
