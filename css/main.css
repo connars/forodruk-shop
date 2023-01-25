@@ -319,15 +319,20 @@
     }
   }
   .swiper-slide2:nth-child(1n)::before {
-    content: '';
+    content: '’’';
     animation: 2s float infinite ease-in-out;
     position: absolute;
     top: 0;
     left: 20px;
-    transform: translateY(-10px);
-    background-image: url(./../dialog.svg);
-    width: 50px;
-    height: 50px;
+    transform: translateY(-30px);
+    font-size: 130px;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: -0.105em;
+
+    /* background-image: url(./../dialog.svg); */
+    /* width: 50px;
+    height: 50px; */
     background-position: center;
     background-repeat: no-repeat;
     transition: 0.3s;
