@@ -28,3 +28,21 @@ function animate() {
 menu.addEventListener('click', toggle);
 menu.addEventListener('click', animate);
 
+let themes = document.querySelector('.themes');
+let picker = document.querySelector('.pick');
+
+function openThemes() {
+    themes.classList.toggle('active');
+    picker.classList.toggle('active')
+}
+
+picker.addEventListener('click', openThemes);
+
+let secondTheme = document.querySelector('.theme-two');
+
+function changeTheme() {
+
+}
+
+secondTheme.addEventListener('click', changeTheme)
+

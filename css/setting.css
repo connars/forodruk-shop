@@ -1,6 +1,11 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg);
     font-family: 'Manrope', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .container {

@@ -2,6 +2,70 @@
     --bg : #F9FCF6;
     --green: #8BC34A;
     --black: black;
+
+    --violette : rgb(147, 42, 207);
+    --bg-violette : black;
+}
+
+.themes {
+    background-color: white;
+    width: 100px;
+    height: 160px;
+    position: fixed;
+    top: 45%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.143);
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    transform: translateX(-50%);
+    transition: 0.3s ease-in-out;
+}
+
+.themes.active {
+    transform: translateY(0px);
+}
+
+.current-theme {
+    border: 3px solid white;
+    outline: 2px solid var(--green);
+}
+
+.pick {
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    
+}
+
+.pick img {
+    cursor: pointer;
+    width: 22px;
+    margin: 0 4px;
+}
+
+.pick.active {
+    transform: rotate(180deg);
+}
+
+.themes__wrapper {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.color-one {
+    background-color: var(--green);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.color-two {
+    background-color: var(--violette);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 #header{
@@ -265,21 +329,11 @@
   }
 
 #action {
+    margin-top: 40px;
     background-size: cover;
     background-image: url(./../img/top-footer-bg.jpg);
     background-attachment: fixed;
     position: relative;
-    /* filter: contrast(40%); */
-    /* backdrop-filter: blur(2px);
-    backdrop-filter: brightness(60%);
-    backdrop-filter: contrast(40%);
-    backdrop-filter: drop-shadow(4px 4px 10px blue);
-    backdrop-filter: grayscale(30%);
-    backdrop-filter: hue-rotate(120deg);
-    backdrop-filter: invert(70%);
-    backdrop-filter: opacity(20%);
-    backdrop-filter: sepia(90%);
-    backdrop-filter: saturate(80%); */
 }
 
 .action:before {
