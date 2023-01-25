@@ -69,4 +69,24 @@ firstTheme.addEventListener('click', changeTheme2);
 
 // changeTheme()
 
+let standart = document.querySelector('.slide-one');
+let unstandart = document.querySelector('.slide-two');
+
+let currentSlideValue = document.querySelector('.current__slide');
+
+let changeSlideValueLeft = document.querySelector('.swiper-button-prev3');
+let changeSlideValueRight = document.querySelector('.swiper-button-next3');
+
+function changeSlideTitle() {
+    if(standart.matches('.swiper-slide-active')) {
+        currentSlideValue.innerHTML = 'Стандартні <br/> розміри';
+    } else {
+        currentSlideValue.innerHTML = 'Нестандартні <br/> розміри'
+    } 
+}
+
+
+;
+
+setInterval(changeSlideTitle,100)
 

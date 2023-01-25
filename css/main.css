@@ -9,14 +9,14 @@
 
 .themes {
     background-color: white;
-    width: 100px;
-    height: 160px;
+    width: 80px;
+    height:90px;
     position: fixed;
     top: 45%;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.143);
     border-radius: 0px 30px 30px 0px;
     display: flex;
-    transform: translateX(-50%);
+    transform: translateX(-60%);
     transition: 0.3s ease-in-out;
     z-index: 999;
 }
@@ -39,6 +39,13 @@
     align-items: center;
     display: flex;
     
+}
+
+
+.color-one:hover, 
+.color-two:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
 }
 
 .pick img {
@@ -229,6 +236,114 @@
         margin-top: 40px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.mySwiper3 {
+    width: 900px !important;
+}
+
+.swiper-slide3 {
+    width: 900px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.swiper-nav3 {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.current__slide {
+    display: flex;
+    align-items: center;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.075em;
+    color: var(--green);
+}
+
+.slider__card {
+    background-color: white;
+    width: 110px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.143);
+}
+
+.slider__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    align-items: flex-end;
+}
+
+.slider__cards svg {
+    fill: var(--green) !important;
+    width: 80%;
+    padding-top: 20px;
+}
+
+.test {
+    fill: blue !important;
+}
+
+.standart1 {
+    /* height: 90px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.standart1 hr {
+    width: 100%;
+    margin: 20px 0;
+    height: 2px;
+    background-color: black;
+}
+
+.standart1 img{
+    width: 50px;
+    height: 50px;
+}
+
+.standart2 {
+    height: 110px;
+}
+
+.standart3 {
+    height: 130px;
+}
+
+.standart4 {
+    height: 150px;
+}
+
+.standart5 {
+    height: 170px;
+}
+
+
+
+
+
 
 
 
