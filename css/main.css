@@ -343,6 +343,11 @@
     height: 190px;
 }
 
+.price__button {
+    display: flex;
+    justify-content: center;
+}
+
 @media screen and (max-width: 900px){
     .standart1,
     .standart2,
