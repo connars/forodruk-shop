@@ -18,9 +18,15 @@
     
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/loader.css">
 
 </head>
 <body>
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="load-container">
+          <div class="linespinner"></div>
+        </div>
+    </div>
     <header class="header" id="header">
         <div class="container">
             <div class="header__wrapper">
@@ -355,6 +361,14 @@
     //     }
     //   },
     });
+  </script>
+
+  <script>
+    window.onload = function() {
+        let preloader = document.getElementById('loader-wrapper');
+        // preloader.classList.add('visible');
+        preloader.classList.add('hidden');
+    }
   </script>
 </body>
 </html>
