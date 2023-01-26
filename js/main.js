@@ -64,6 +64,7 @@ function changeTheme2() {
     }
 };
 
+
 secondTheme.addEventListener('click', changeTheme);
 firstTheme.addEventListener('click', changeTheme2);
 
@@ -71,22 +72,21 @@ firstTheme.addEventListener('click', changeTheme2);
 
 let standart = document.querySelector('.slide-one');
 let unstandart = document.querySelector('.slide-two');
-
 let currentSlideValue = document.querySelector('.current__slide');
-
 let changeSlideValueLeft = document.querySelector('.swiper-button-prev3');
 let changeSlideValueRight = document.querySelector('.swiper-button-next3');
 
 function changeSlideTitle() {
     if(standart.matches('.swiper-slide-active')) {
         currentSlideValue.innerHTML = 'Стандартні <br/> розміри';
+        changeSlideValueLeft.style.opacity = "0.6";
+        changeSlideValueRight.style.opacity = "1";
     } else {
-        currentSlideValue.innerHTML = 'Нестандартні <br/> розміри'
+        currentSlideValue.innerHTML = 'Нестандартні <br/> розміри';
+        changeSlideValueLeft.style.opacity = "1";
+        changeSlideValueRight.style.opacity = "0.6";
     } 
 }
 
-
-;
-
-setInterval(changeSlideTitle,100)
+setInterval(changeSlideTitle,300);
 

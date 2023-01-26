@@ -370,7 +370,21 @@
 
 
 
+/* ХОСЛСТИ СТАРТ */
+.canvas__title {
+    text-align: left !important;
+}
 
+.canvas__title p{
+    text-align: left !important;
+}
+
+.canvas__title h4{
+    text-align: left !important;
+}
+
+
+/* ХОСТИ ЕНД */
 
 
 
