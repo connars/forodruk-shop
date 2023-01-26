@@ -486,7 +486,7 @@
 #action {
     margin-top: 40px;
     background-size: cover;
-    background-image: url(./../img/top-footer-bg.jpg);
+    /* background-image: url(./../img/top-footer-bg.jpg); */
     background-attachment: fixed;
     position: relative;
 }
