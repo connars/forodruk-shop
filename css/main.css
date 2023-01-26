@@ -205,7 +205,7 @@
     line-height: 66px;
     /* identical to box height */
     color: var(--green);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .hero__left p {
@@ -216,7 +216,7 @@
     line-height: 33px;
     /* identical to box height */
     color: #7B7B7B;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .hero__right {
@@ -280,7 +280,38 @@
     }
 }
 
+/* BENEFITS START  */
+.benefits__cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-top: 40px;
+}
+.benefits__item {
+    width: 300px;
+    /* background-color: white; */
+    z-index: 11;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
+.benefits__item img{
+    width: 50%;
+    /* background-color: #7B7B7B; */
+    padding: 10px;
+}
+
+.benefits__title {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 18px;
+}
+/* BENEFUITS END */
 
 
 
@@ -449,6 +480,9 @@
         justify-content: center;
     }
     
+    .canvas__deskr p {
+        text-align: center;
+    }
 }
 
 /* ХОСТИ ЕНД */

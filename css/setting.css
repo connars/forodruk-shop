@@ -1,11 +1,13 @@
 html {
     scroll-behavior: smooth  !important;
+    overflow-x: hidden;
 }
 
 body {
     background-color: var(--bg);
     font-family: 'Manrope', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .container {
