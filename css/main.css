@@ -241,7 +241,7 @@
     flex-wrap: wrap;
     /* transform: rotate(-20deg); */
     transform-style: preserve-3d;
-    transform: translate(50%, -2230px) rotateX(60deg) rotateZ(50deg);
+    transform: translate(50%, -65%) rotateX(60deg) rotateZ(50deg);
     /* transform-origin: 50% 100%; */
     top: 0;
 
@@ -284,7 +284,7 @@
     }
 
     .gallery__wrapper {
-        transform: translate(50%, -2230px) rotateX(60deg) rotateZ(50deg);
+        transform: translate(50%, -71%) rotateX(60deg) rotateZ(50deg);
     }
 }
 
