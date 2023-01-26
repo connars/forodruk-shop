@@ -7,6 +7,8 @@
     --bg-violette : black;
 }
 
+/* THEMES PICKER */
+
 .themes {
     background-color: white;
     width: 80px;
@@ -79,6 +81,9 @@
     height: 25px;
     border-radius: 50%;
 }
+
+/* THEMES PICKER END */
+/* HEADER START  */
 
 #header{
     position: absolute;
@@ -174,7 +179,7 @@
     }
 }
 
-
+/* HEADER END  */
 .hero {
     height: 100vh;
     display: flex;
@@ -183,11 +188,12 @@
 }
 
 .hero__left {
-    display: grid;
+    /* display: grid;
     align-items: center;
     justify-items: start;
     align-content: center;
-    gap: 20px;
+    gap: 20px; */
+    padding-top: 100px;
 }
 
 .hero__left h1 {
@@ -198,6 +204,7 @@
     line-height: 66px;
     /* identical to box height */
     color: var(--green);
+    margin-bottom: 20px;
 }
 
 .hero__left p {
@@ -208,6 +215,7 @@
     line-height: 33px;
     /* identical to box height */
     color: #7B7B7B;
+    margin-bottom: 10px;
 }
 
 .hero__right {
@@ -215,13 +223,41 @@
     align-items: center;
 }
 
+
+
+.gallery__wrapper {
+    position: absolute;
+    width: 1200px;
+    z-index: 0;
+    top: 300px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* transform: rotate(-20deg); */
+    transform-style: preserve-3d;
+    transform: translate(50%, -1130px) rotateX(60deg) rotateZ(50deg);
+    /* transform-origin: 50% 100%; */
+    top: 0;
+
+}
+
+.gallery__card {
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+}
+
+.gallery__card {
+    width: 300px;
+}
 @media screen and (max-width: 900px){
     .hero {
-        display: flex;
+        /* display: flex;
         justify-content: center;
         /* flex-wrap: wrap-reverse; */
-        align-items: center;
-        align-content: center;
+        /* align-items: center;
+        align-content: center;  */
     }
 
     .hero__left h1 {
@@ -235,10 +271,11 @@
     .hero__right {
         margin-top: 40px;
     }
+
+    .gallery__wrapper {
+        transform: translate(50%, -1430px) rotateX(60deg) rotateZ(50deg);
+    }
 }
-
-
-
 
 
 
@@ -345,6 +382,7 @@
 }
 
 .price__button {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
@@ -383,6 +421,32 @@
     text-align: left !important;
 }
 
+.canvas__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 900px){
+    .canvas__title {
+        text-align: center !important;
+    }
+    
+    .canvas__title p{
+        text-align: center !important;
+    }
+    
+    .canvas__title h4{
+        text-align: center !important;
+    }
+
+    .canvas__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+}
 
 /* ХОСТИ ЕНД */
 
@@ -406,7 +470,7 @@
     justify-content: center;
     /* border-radius: 18px; */
     font-size: 22px;
-    padding: 20px;
+    /* padding: 20px; */
     font-weight: bold;
     color: #fff;
     background-color: white;
