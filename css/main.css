@@ -185,6 +185,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: 200px;
 }
 
 .hero__left {
@@ -236,7 +237,7 @@
     flex-wrap: wrap;
     /* transform: rotate(-20deg); */
     transform-style: preserve-3d;
-    transform: translate(50%, -1130px) rotateX(60deg) rotateZ(50deg);
+    transform: translate(50%, -1030px) rotateX(60deg) rotateZ(50deg);
     /* transform-origin: 50% 100%; */
     top: 0;
 
@@ -246,6 +247,7 @@
     width: 300px;
     background-color: white;
     padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.137);
 }
 
 .gallery__card {
@@ -258,6 +260,7 @@
         /* flex-wrap: wrap-reverse; */
         /* align-items: center;
         align-content: center;  */
+        margin-bottom: 0px;
     }
 
     .hero__left h1 {
@@ -461,7 +464,7 @@
 
 .swiper {
     width: 300px;
-    height: 450px;
+    height: 320px;
   }
 
   .swiper-slide {
@@ -485,7 +488,7 @@
   @media screen and (max-width: 900px){
     .swiper {
         width: 250px;
-        height: 390px;
+        height: 270px;
       }
 }
 
