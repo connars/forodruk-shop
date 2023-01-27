@@ -1,5 +1,6 @@
 :root {
     --bg : #F9FCF6;
+    /* --bg  : linear-gradient(181.06deg, #FFFFFF -28.61%, #dcf8bb 109.64%); */
     --green: #8BC34A;
     --black: black;
 
@@ -315,6 +316,7 @@
 
 .benefits__item img{
     width: 50%;
+    height: 100px;
     /* background-color: #7B7B7B; */
     padding: 10px;
 }
@@ -384,6 +386,26 @@
 .slider__cards svg {
     fill: var(--green) !important;
     width: 50px;
+}
+
+.preview {
+    width: 50%;
+    padding: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.151);
+}
+
+.preview-two {
+    width: 60%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.151);
+    height: 60px;
+    padding: 5px;
+    margin-bottom: 5px; 
+}
+
+.preview-bg{
+    background-color: var(--green);
+    width: 100%;
+    height: 100%;
 }
 
 .slider__card {
@@ -511,7 +533,7 @@
 
 .swiper {
     width: 300px;
-    height: 320px;
+    height: auto;
   }
 
   .swiper-slide {
@@ -528,14 +550,14 @@
   }
 
   .swiper-slide img {
-    object-fit: cover;
+    object-fit: cover !important;
     height: 100%;
   }
 
   @media screen and (max-width: 900px){
     .swiper {
-        width: 250px;
-        height: 270px;
+        width: 240px;
+        height: auto;
       }
 }
 

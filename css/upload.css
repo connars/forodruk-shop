@@ -1,0 +1,18 @@
+.firstscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    height: 100vh;
+}
+
+.firstscreen img {
+    width: 130px;
+}
+
+.firstscreen p {
+    font-size: 18px;
+    font-weight: 600;
+}

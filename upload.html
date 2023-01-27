@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотодрук онлайн</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/loader.css">
+    <link rel="stylesheet" href="./css/upload.css">
+
+</head>
+<body>
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="load-container">
+          <div class="linespinner"></div>
+        </div>
+    </div>
+    <header class="header" id="header" style="border-bottom: 2px solid rgb(206, 206, 206); background-color: white;">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__left">
+                    <a href="/">
+                        LOGO
+                    </a>
+                </div>
+                <div class="header__center">
+                    ціни
+                </div>
+                <div class="header__right">
+                    <a href="index.html">
+                        <button  class="main-btn">На головну</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="m-header">
+        <div class="burger">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+        </div>
+    </div>
+    <hr class="header__line">
+    <div class="firstscreen">
+        <img src="./img/upload.svg" alt="">
+        <p> Додайте Ваше перше фото</p>
+        <input id="image-file" type="file" />
+    </div>
+
+
+    <script src="./js/main.js"></script>
+    <script>
+        window.onload = function() {
+            let preloader = document.getElementById('loader-wrapper');
+            // preloader.classList.add('visible');
+            preloader.classList.add('hidden'), 400
+      
+        }
+      </script>
+</body>
+</html>
