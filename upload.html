@@ -84,13 +84,6 @@
 	padding:0.5em 1em;
 }
 .btn{
-	background:white;
-	color:black;
-	border:1px solid black;
-	padding: 0.5em 1em;
-	text-decoration:none;
-	margin:0.8em 0.3em;
-	display:inline-block;
 	cursor:pointer;
 }
 
@@ -128,10 +121,15 @@ img {
                     <label> Width</label>
                     <input type="number" class="img-w" value="300" min="100" max="1200" />
                 </div>
-                <!-- save btn -->
-                <button class="btn save hide main-btn">Далі</button>
-                <!-- download btn -->
-                <a href="" class="btn download hide">Змінити</a>
+                <div class="box-buttons">
+                    <!-- save btn -->
+                    <button class="btn save hide main-btn">Обрізати</button>
+                    <!-- download btn -->
+                    <a href="" class="btn download hide main-btn">Завантажити</a>
+                    <!-- buy btn -->
+                    <button class="btn next hide main-btn">Продовжити</button>
+                </div>
+                <div style="width: 100px; height: 100px; cursor: pointer;"  class="size1">9x13</div>
             </div>
         </main>
     </div>
@@ -172,7 +170,7 @@ img {
       </script>
 
       <script>
-            let result = document.querySelector('.result'),
+        let result = document.querySelector('.result'),
             img_result = document.querySelector('.img-result'),
             img_w = document.querySelector('.img-w'),
             img_h = document.querySelector('.img-h'),
@@ -180,26 +178,40 @@ img {
             save = document.querySelector('.save'),
             cropped = document.querySelector('.cropped'),
             dwn = document.querySelector('.download'),
+            next = document.querySelector('.next'),
             upload = document.querySelector('#file-input'),
+            size1 = document.querySelector('.size1'),
+            cropperBox = document.querySelector('.cropper-crop-box'),
             cropper = '';
             upload.addEventListener('change', (e) => {
-            if (e.target.files.length) {
-                const reader = new FileReader();
-                reader.onload = (e)=> {
-                if(e.target.result){
-                            let img = document.createElement('img');
-                            img.id = 'image';
-                            img.src = e.target.result
-                            result.innerHTML = '';
-                    result.appendChild(img);
-                            save.classList.remove('hide');
-                            options.classList.remove('hide');
+                if (e.target.files.length) {
+                    const reader = new FileReader();
+                    reader.onload = (e)=> {
+                    if(e.target.result){
+                                let img = document.createElement('img');
+                                img.id = 'image';
+                                img.src = e.target.result
+                                result.innerHTML = '';
+                        result.appendChild(img);
+                                save.classList.remove('hide');
+                                options.classList.remove('hide');
+                                next.classList.remove('hide');
 
-                            cropper = new Cropper(img);
+                                
+
+                                function crop1() {
+                                    // cropperBox.classList.add('style1');
+                                    console.log(cropperBox)
+                                }
+
+                                size1.addEventListener('click', crop1);
+
+                                cropper = new Cropper(img);
+
+                    }
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
                 }
-                };
-                reader.readAsDataURL(e.target.files[0]);
-            }
             });
 
             save.addEventListener('click',(e)=>{
@@ -209,14 +221,15 @@ img {
                     width: img_w.value 
                 }).toDataURL();
 
-            cropped.classList.remove('hide');
-            img_result.classList.remove('hide');
-            cropped.src = imgSrc;
-            dwn.classList.remove('hide');
-            dwn.download = 'cropped(drukphoto.com).png';
-            dwn.setAttribute('href',imgSrc);
+                cropped.classList.remove('hide');
+                img_result.classList.remove('hide');
+                cropped.src = imgSrc;
+                dwn.classList.remove('hide');
+                dwn.download = 'cropped(drukphoto.com).png';
+                dwn.setAttribute('href',imgSrc);
             });
 
+            
 
 
       </script>

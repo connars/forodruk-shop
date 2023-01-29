@@ -94,3 +94,4 @@ let image = document.getElementById("image-file").value;
 
 setInterval(console.log(image), 100)
 
+

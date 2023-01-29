@@ -20,8 +20,8 @@ body {
 .main-btn {
     padding: 20px;
     border-radius: 15px 15px 15px 0px;
-    background-color: var(--green);
-
+    background-color: var(--green) !important;
+    border: none !important;
     color: white;
     transition: 0.3s ease-in-out;
     cursor: pointer;
