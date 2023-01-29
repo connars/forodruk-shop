@@ -16,3 +16,10 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.cropped {
+    position: absolute;
+    z-index: 999;
+    padding: 10px;
+    background-color: white;
+}
