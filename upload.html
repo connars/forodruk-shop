@@ -57,10 +57,15 @@
 
     <style>
      .page {
-	margin: 1em auto;
-	max-width: 768px;
+	/* margin: 1em auto; */
+	width: 100vw;
+    padding: 0 20px;
 	display: flex;
+    gap: 20px;
 	align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 	flex-wrap: wrap;
 	height: 100%;
 }
@@ -71,14 +76,11 @@
 	margin:0.5em;
 }
 
-.box-2 {
-	padding: 0.5em;
-	width: calc(100%/2 - 1em);
-}
+
 
 .options label,
 .options input{
-	width:4em;
+	width:12em;
 	padding:0.5em 1em;
 }
 .btn{
@@ -103,12 +105,13 @@ img {
             </style>
     <hr class="header__line">
     <div class="firstscreen">
-        <img src="./img/upload.svg" alt="">
+        
         <main class="page">
+            <img src="./img/upload.svg" alt="">
             <h2>Додайте Ваше перше фото</h2>
             <!-- input file -->
             <div class="box">
-                <input type="file" id="file-input"/>
+                <input class="" type="file" id="file-input"/>
             </div>
             <!-- leftbox -->
             <div class="box-2">
@@ -120,13 +123,13 @@ img {
                 <img class="cropped" src="" alt="">
             </div>
             <!-- input file -->
-            <div class="box">
+            <div class="box settings">
                 <div class="options hide">
                     <label> Width</label>
                     <input type="number" class="img-w" value="300" min="100" max="1200" />
                 </div>
                 <!-- save btn -->
-                <button class="btn save hide">Далі</button>
+                <button class="btn save hide main-btn">Далі</button>
                 <!-- download btn -->
                 <a href="" class="btn download hide">Змінити</a>
             </div>
@@ -210,7 +213,7 @@ img {
             img_result.classList.remove('hide');
             cropped.src = imgSrc;
             dwn.classList.remove('hide');
-            dwn.download = 'imagename.png';
+            dwn.download = 'cropped(drukphoto.com).png';
             dwn.setAttribute('href',imgSrc);
             });
 
