@@ -40,9 +40,19 @@ function cartCacl() {
 
 setInterval(cartCacl, 400);
 
-document.querySelectorAll('.card__type').addEventListener('change',() => {
+// document.querySelectorAll('.card__type').addEventListener('change',() => {
     
-});
+// });
+
+let cart = document.querySelector('.upload__main-sidebar');
+
+document.querySelector('.footer-button').addEventListener('click',() => {
+    if (cart.classList.contains('active')) {
+        cart.classList.remove('active')
+    } else {
+        cart.classList.add('active')
+    }
+})
 
 
 

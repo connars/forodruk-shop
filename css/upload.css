@@ -243,7 +243,15 @@ input[type=number] {
 @media screen and (max-width: 1000px){
     .upload__main-sidebar {
         position: absolute;
+        width: 100%;
+        transition: 0.4s ease-in-out;
         transform: translateY(-100%);
+    }
+
+    .upload__main-sidebar.active {
+        position: absolute;
+        transform: translateY(0%);
+        z-index: 9999;
     }
 
     .card__box {
