@@ -54,6 +54,14 @@ document.querySelector('.footer-button').addEventListener('click',() => {
     }
 })
 
+document.querySelector('.upload__sidebar-exit').addEventListener('click',() => {
+    if (cart.classList.contains('active')) {
+        cart.classList.remove('active')
+    } else {
+        cart.classList.add('active')
+    }
+})
+
 
 
 
