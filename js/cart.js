@@ -1,3 +1,23 @@
+
+
+let addAddvalue = document.querySelector('.plus');
+let minusAddvalue = document.querySelector('.minus');
+let counter = document.querySelector('.card__count');
+
+addAddvalue.addEventListener('click', function(){
+    counter.value = parseInt(counter.value) + 1; // `parseInt` converts the `value` from a string to a number
+}, false);
+
+minusAddvalue.addEventListener('click', function(){
+    counter.value = parseInt(counter.value) - 1; // `parseInt` converts the `value` from a string to a number
+}, false);
+
+
+
+
+
+
+
 async function fetchMovies() {
     let res = await fetch('https://api.novaposhta.ua/v2.0/json/', {
         method: 'post',

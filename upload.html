@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="md">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./css/loader.css">
     <link rel="stylesheet" href="./css/upload.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 </head>
 <body>
@@ -97,9 +98,13 @@ img {
 
             </style>
     <hr class="header__line">
-    <div class="firstscreen">
-        
-        <main class="page">
+  <!-- <div class="firstscreen">
+        <h2>Додайте Ваше перше фото</h2>
+        <input  type="file"/>
+
+
+
+       <main class="page">
             <img src="./img/upload.svg" alt="">
             <h2>Додайте Ваше перше фото</h2>
            
@@ -131,11 +136,11 @@ img {
                 </div>
                 <div style="width: 100px; height: 100px; cursor: pointer;"  class="size1">9x13</div>
             </div>
-        </main>
-    </div>
+        </main> 
+    </div> -->
 
 
-<!-- 
+
     <div class="upload__container">
         <div class="upload__wrapper">
             <div class="upload__header">
@@ -143,7 +148,63 @@ img {
             </div>
             <div class="upload__main">
                 <div class="upload__main-cart">
-
+                    <div class="card__options-wrapper">
+                        <div class="card__options">
+                            <p class="card__sizing-title">
+                                Розмір:
+                            </p>
+                            <p class="card__type-title">
+                                Тип друку:
+                            </p>
+                            <p class="card__paper-title">
+                                Фотопапір:
+                            </p>
+                            <p class="card__count-title">
+                                Кількість:
+                            </p>
+                            <p class="card__options-title">
+                                Дії:
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card__wrapper">
+                        <div class="card__img">
+                            <img src="./test.jpg" alt="">
+                        </div>
+                        <div class="card__setting">
+                            <select name="" id="" class="card__input card__sizing">
+                                <option value="" selected>10x15</option>
+                                <option value="">20x30</option>
+                                <option value="">10x15</option>
+                                <option value="">20x30</option>
+                                <option value="">10x15</option>
+                                <option value="">20x30</option>
+                                <option value="">10x15</option>
+                                <option value="">20x30</option>
+                            </select>
+                            <select name="" id="" class="card__input card__type">
+                                <option value="" selected>Без полів</option>
+                                <option value="">З полями</option>
+                            </select>
+                            <select name="" id="" class="card__input card__paper">
+                                <option value="" selected>Мат</option>
+                                <option value="">Глянець</option>
+                            </select>
+                            <div class="card__count-wrapper">
+                                <div class="card__count-controls plus">
+                                    +
+                                </div>
+                                <input class="card__count" type="number" value="1" >
+                                <div class="card__count-controls minus">
+                                    -
+                                </div>
+                            </div>
+                           <div class="card__crud">
+                                удалить <br/>
+                                копировать
+                           </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="upload__main-sidebar">
                     <input class='upload-input' type="text" placeholder="test">
@@ -151,7 +212,7 @@ img {
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 
 
