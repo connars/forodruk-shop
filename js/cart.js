@@ -1,3 +1,13 @@
+let sizes = [
+    { '10x15' : 10 },
+    { '20x15' : 20 },
+    { '30x15' : 30 },
+    { '40x15' : 40 },
+    { '50x15' : 50 },
+    { '60x15' : 60 },
+    { '70x15' : 70 }
+];
+
 
 
 let addAddvalue = document.querySelector('.plus');
@@ -5,12 +15,34 @@ let minusAddvalue = document.querySelector('.minus');
 let counter = document.querySelector('.card__count');
 
 addAddvalue.addEventListener('click', function(){
-    counter.value = parseInt(counter.value) + 1; // `parseInt` converts the `value` from a string to a number
+    counter.value = parseInt(counter.value) + 1; 
 }, false);
 
 minusAddvalue.addEventListener('click', function(){
-    counter.value = parseInt(counter.value) - 1; // `parseInt` converts the `value` from a string to a number
+    counter.value = parseInt(counter.value) - 1; 
 }, false);
+
+let cardSize = document.querySelector('.card__sizing').value;
+let cartSum = document.querySelector('.sum');
+let cartSumMobile = document.querySelector('.sum-m');
+
+function cartCacl() {
+
+
+   let result = parseInt(cardSize) * parseInt(counter.value);
+   cartSum.innerHTML = `${result} грн`;
+
+   let resultMobile = parseInt(cardSize) * parseInt(counter.value);
+   cartSumMobile.innerHTML = `${resultMobile} грн`;
+
+    console.log(result);
+}
+
+setInterval(cartCacl, 400);
+
+document.querySelectorAll('.card__type').addEventListener('change',() => {
+    
+});
 
 
 
