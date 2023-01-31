@@ -29,7 +29,7 @@
           <div class="linespinner"></div>
         </div>
     </div>
-    <header class="header" id="header" style="border-bottom: 2px solid rgb(206, 206, 206); background-color: white;">
+    <header class="header" id="header" style="border-bottom: 2px solid rgb(206, 206, 206); background-color: white; position: relative;">
         <div class="container">
             <div class="header__wrapper">
                 <div class="header__left">
@@ -102,31 +102,31 @@ img {
         <main class="page">
             <img src="./img/upload.svg" alt="">
             <h2>Додайте Ваше перше фото</h2>
-            <!-- input file -->
+           
             <div class="box">
                 <input class="" type="file" id="file-input"/>
             </div>
-            <!-- leftbox -->
+           
             <div class="box-2">
                 <div class="result"></div>
             </div>
-            <!--rightbox-->
+        
             <div class="box-2 img-result hide">
-                <!-- result of crop -->
+             
                 <img class="cropped" src="" alt="">
             </div>
-            <!-- input file -->
+     
             <div class="box settings">
                 <div class="options hide">
                     <label> Width</label>
                     <input type="number" class="img-w" value="300" min="100" max="1200" />
                 </div>
                 <div class="box-buttons">
-                    <!-- save btn -->
+                  
                     <button class="btn save hide main-btn">Обрізати</button>
-                    <!-- download btn -->
+                   
                     <a href="" class="btn download hide main-btn">Завантажити</a>
-                    <!-- buy btn -->
+                
                     <button class="btn next hide main-btn">Продовжити</button>
                 </div>
                 <div style="width: 100px; height: 100px; cursor: pointer;"  class="size1">9x13</div>
@@ -135,6 +135,23 @@ img {
     </div>
 
 
+<!-- 
+    <div class="upload__container">
+        <div class="upload__wrapper">
+            <div class="upload__header">
+
+            </div>
+            <div class="upload__main">
+                <div class="upload__main-cart">
+
+                </div>
+                <div class="upload__main-sidebar">
+                    <input class='upload-input' type="text" placeholder="test">
+                    <input class='upload-input' type="text" placeholder="test">
+                </div>
+            </div>
+        </div>
+    </div> -->
 
 
 
@@ -158,7 +175,7 @@ img {
 <div id="result"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="./js/main.js"></script>
+<script src="./js/main.js"></script>
 
     <script>
         window.onload = function() {
@@ -233,5 +250,8 @@ img {
 
 
       </script>
+
+      <script src="./js/cart.js"></script>
+
 </body>
 </html>
