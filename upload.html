@@ -30,7 +30,7 @@
           <div class="linespinner"></div>
         </div>
     </div>
-    <header class="header" id="header" style="border-bottom: 2px solid rgb(206, 206, 206); background-color: white; position: relative;">
+    <header class="header" id="header" style="height :10vh;border-bottom: 2px solid rgb(206, 206, 206); background-color: white; position: relative;">
         <div class="container">
             <div class="header__wrapper">
                 <div class="header__left">
@@ -153,6 +153,11 @@ img {
                            </h2> 
                         </div>
                         <div class="upload__header-menu">
+                            <input style="visibility: hidden;" class="openUploader" type="file">
+
+                            <a href="" class="main-btn upload-btn">
+                                Додати фото
+                            </a>
 
                         </div>
                     </div>
@@ -176,16 +181,6 @@ img {
                         </div>
                     </div>
                     <div class="card__wrapper-cart">
-
-
-
-
-
-
-
-
-
-
                         <div class="card__wrapper">
                             <div class="card__img">
                                 <img src="./test.jpg" alt="">
@@ -232,14 +227,15 @@ img {
                                     </div>
                                 </div>
                                 
-                               <div class="card__crud">
-                                    удалить <br/>
-                                    копировать
+                               <div class="card__opt">
+                                   <img src="./img/icons/document-duplicate.svg" alt="">
+                                   <img src="./img/icons/trash.svg" alt="">
                                </div>
                             </div>
                         </div>
-
                     </div>
+
+                    
 
 
 
@@ -252,9 +248,178 @@ img {
                     
                 </div>
                 <div class="upload__main-sidebar">
-                    <input class='upload-input' type="text" placeholder="test">
-                    <input class='upload-input' type="text" placeholder="test">
-
+                    <div class="sidebar__wrapper">
+                        <div class="sidebar__accordion">
+                            <!-- START -->
+                            <div class="sidebar__accordion-item active">
+                                <div class="sidebar__accordion-title">
+                                    <div class="sidebar__accordion-number">
+                                        <span>
+                                            1
+                                        </span>
+                                    </div>
+                                    <p>
+                                        Деталі замовлення
+                                    </p>
+                                    <div class="check">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 13L9 17L19 7" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="sidebar__accordion-contant">
+                                    <div class="details">
+                                        <div class="details__top">
+                                            <p>
+                                                Розмір
+                                            </p>
+                                            <p>
+                                                Кількість
+                                            </p>
+                                            <p>
+                                                Цінa
+                                            </p>
+                                        </div>
+                                        <div class="details__middle">
+                                            <p>
+                                                10х10
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                        <div class="details__bottom">
+                                            <p>
+                                                Всього
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END -->
+                            <!-- START -->
+                            <div class="sidebar__accordion-item">
+                                <div class="sidebar__accordion-title">
+                                    <div class="sidebar__accordion-number">
+                                        <span>
+                                            2
+                                        </span>
+                                    </div>
+                                    <p>
+                                        Iнформація
+                                    </p>
+                                    <div class="check">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 13L9 17L19 7" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="sidebar__accordion-contant">
+                                    <div class="details">
+                                        <div class="details__top">
+                                            <p>
+                                                Розмір
+                                            </p>
+                                            <p>
+                                                Кількість
+                                            </p>
+                                            <p>
+                                                Цінa
+                                            </p>
+                                        </div>
+                                        <div class="details__middle">
+                                            <p>
+                                                10х10
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                        <div class="details__bottom">
+                                            <p>
+                                                Всього
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END -->
+                            <!-- START -->
+                            <div class="sidebar__accordion-item">
+                                <div class="sidebar__accordion-title">
+                                    <div class="sidebar__accordion-number">
+                                        <span>
+                                            3
+                                        </span>
+                                    </div>
+                                    <p>
+                                        Оплата та доставка
+                                    </p>
+                                    <div class="check">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 13L9 17L19 7" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="sidebar__accordion-contant">
+                                    <div class="details">
+                                        <div class="details__top">
+                                            <p>
+                                                Розмір
+                                            </p>
+                                            <p>
+                                                Кількість
+                                            </p>
+                                            <p>
+                                                Цінa
+                                            </p>
+                                        </div>
+                                        <div class="details__middle">
+                                            <p>
+                                                10х10
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                        <div class="details__bottom">
+                                            <p>
+                                                Всього
+                                            </p>
+                                            <p>
+                                                1
+                                            </p>
+                                            <p>
+                                                1 грн
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END -->
+                        </div>
+                    </div>
                     <div class="sum">
                         1
                     </div>

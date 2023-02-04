@@ -143,7 +143,7 @@
         position: fixed !important;
         background-color: white;
         height: 100vh;
-        transform: translateY(-100%);
+        transform: translateY(-100vh);
         transition: 0.4s;
     }
 
