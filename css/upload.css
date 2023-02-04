@@ -83,7 +83,7 @@ input#file-upload-button{
 
 .upload__container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 100vh;
 }
@@ -108,8 +108,10 @@ input#file-upload-button{
     background-color: var(--green);
     width: 400px;
     height: 100%;
-
+    transform: translateX(100%);
     display: flex;
+    position: absolute;
+    right: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -258,6 +260,10 @@ input[type=number] {
         transform: translateY(0%);
        
     }
+
+    /* .upload__footer {
+        visibility: visible;
+    } */
 
     .card__box {
         display: flex;
