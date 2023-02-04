@@ -436,6 +436,21 @@
     margin-bottom: 5px; 
 }
 
+.square {
+    height: 55px;
+    width: 55px;
+}
+
+.mini {
+    height: 50px;
+    width: 60px;
+}
+
+.polaroid {
+    height: 65px;
+    padding-bottom: 15px;
+}
+
 .preview-bg{
     background-color: var(--green);
     width: 100%;
@@ -454,7 +469,7 @@
     width: 100%;
     margin: 4px 0;
     height: 1px;
-    background-color: gray;
+    background-color: rgb(190, 190, 190);
 }
 
 .card__size {
@@ -496,8 +511,9 @@
     .standart3,
     .standart4,
     .standart5 {
-        height: 146px;
+        height: auto;
         width: 110px;
+        padding-top: 10px;
     }
 
     .slider__cards svg {
@@ -505,7 +521,7 @@
     }
 
     .mySwiper3 {
-       height: 450px !important;
+       height: 520px !important;
     }
 }
 
@@ -527,7 +543,22 @@
 .canvas__wrapper {
     display: flex;
     flex-wrap: wrap;
+    padding: 60px 0px;
     justify-content: space-between;
+}
+
+.canvas__right img {
+    width: 400px;
+}
+
+.canvas__deskr {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas__deskr img{
+    display: none;
 }
 
 @media screen and (max-width: 900px){
@@ -550,7 +581,20 @@
     }
     
     .canvas__deskr p {
+        margin-top: 30px;
         text-align: center;
+    }
+
+    .canvas__deskr a {
+        margin: 0 auto;
+    }
+
+    .canvas__deskr img{
+        display: block; 
+    }
+
+    .canvas__right img {
+        display: none;
     }
 }
 

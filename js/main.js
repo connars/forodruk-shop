@@ -95,4 +95,8 @@ let image = document.getElementById("image-file").value;
 setInterval(console.log(image), 100)
 
 
-
+const params = new URLSearchParams(document.location.search);
+const s = params.get("s");
+const o = params.get("o");
+console.info(s); //show C
+console.info(o); //show 1
