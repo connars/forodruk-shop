@@ -17,7 +17,7 @@ document.querySelector('.upload__sidebar-exit').addEventListener('click',() => {
     }
 });
 
-let accordionItem = document.querySelectorAll('.sidebar__accordion-item');
+let accordionItem = document.querySelectorAll('.sidebar__accordion-title');
 let formInput = 1;
 let check = document.querySelectorAll('.check');
 
