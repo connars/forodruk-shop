@@ -71,7 +71,7 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
     })
 })
 
-// --------------ВЫБОР КАРТОЧЕК, ВСЕ ДЕЙСТВИЯ---------------
+// -------------- chosing cards and all listeners ---------------
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener( 'click', () => {
@@ -80,14 +80,62 @@ document.querySelectorAll('.card').forEach(card => {
     })
 })
 
+// SIZE
+
 function changeSize() {
     document.querySelectorAll('.card.active').forEach(activecard => {
-        activecard.querySelector('.type').innerHTML = 'test';
+        let currentSize = document.querySelector('.size__input');
+        activecard.querySelector('.size').innerHTML = `${currentSize.value}`;
     })
 }
 
+document.querySelector('.size__input').addEventListener('change', changeSize);
 
-document.querySelector('.change').addEventListener('click', changeSize);
+// TYPE
+
+function changeType() {
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        let currentSize = document.querySelector('.type__input');
+        activecard.querySelector('.type').innerHTML = `${currentSize.value}`;
+    })
+}
+
+document.querySelector('.type__input').addEventListener('change', changeType);
+
+// MATHERIAL
+
+function changeMath() {
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        let currentSize = document.querySelector('.matherial__input');
+        activecard.querySelector('.matherial').innerHTML = `${currentSize.value}`;
+    })
+}
+
+document.querySelector('.matherial__input').addEventListener('change', changeMath), false;
+
+// COUNT
+
+let currentCount = parseInt(document.querySelector('.card__count').value);
+
+function plusCount() {
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        let newValue = currentCount++;
+
+        document.querySelector('.card__count').value == newValue;
+        let currentValue = parseInt(activecard.querySelector('.countc'))
+        console.log(currentValue);
+    })
+}
+
+// function minusCount() {
+//     document.querySelectorAll('.card.active').forEach(activecard => {
+//         let currentSize = document.querySelector('.size__input');
+//         activecard.querySelector('.countc').innerHTML = `${currentSize.value}`;
+//     })
+// }
+
+document.querySelector('.plus').addEventListener('click', plusCount);
+// document.querySelector('.minus').addEventListener('change', minusCount)
 
 function clickCard() {
     let cards = document.querySelectorAll('.card.active')
@@ -102,7 +150,7 @@ function clickCard() {
     
 }
 
-// ------------ЗАГРУЗКА ФОТО И СОЗДАНИЕ НОВОЙ КАРТОЧКИ--------------------
+// ------------Uploading and create new cards --------------------
 
 let img = document.querySelector('.openUploader').value;
 

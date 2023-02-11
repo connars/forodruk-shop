@@ -373,6 +373,18 @@ input[type=number] {
     transition: 0.4s ease-in-out;
 }
 
+
+.editor__inner {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    gap: 40px;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+}
+
 .editor.active {
     transform: translate(0);
 }
@@ -383,7 +395,31 @@ input[type=number] {
     border-radius: 100px;
     color: white;
     position: absolute;
-    margin-top: -12px !important;
+    left: 20px;
+    top: -15px;
+}
+
+.editor__option {
+
+}
+
+.editor__option p{
+    font-size: 13px;
+    color: #adadad;
+}
+
+.card__count-controls {
+    background-color: var(--green);
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 
