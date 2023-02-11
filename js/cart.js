@@ -71,4 +71,17 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
     })
 })
 
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener( 'click', () => {
+        card.classList.toggle('active');
+        clickCard()
+    })
+})
+
+function clickCard() {
+    let cards = document.querySelectorAll('.card.active')
+    console.log(cards);
+    document.querySelector('.all-cards').innerHTML = `${cards.length}`
+}
+
 
