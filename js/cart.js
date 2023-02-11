@@ -45,7 +45,7 @@ accordionItem[1].addEventListener('click', () => {
         accordionBody[1].classList.add('active')
         accordionBody[2].classList.remove('active')
     }
-})
+}, false)
 
 accordionItem[2].addEventListener('click', () => {
     if(accordionBody[2].classList.contains('active')) {
@@ -80,7 +80,7 @@ document.querySelectorAll('.card').forEach(card => {
     })
 })
 
-// SIZE
+//------------------------ SIZE-------------------------
 
 function changeSize() {
     document.querySelectorAll('.card.active').forEach(activecard => {
@@ -91,7 +91,7 @@ function changeSize() {
 
 document.querySelector('.size__input').addEventListener('change', changeSize);
 
-// TYPE
+// ---------------------------TYPE------------------
 
 function changeType() {
     document.querySelectorAll('.card.active').forEach(activecard => {
@@ -102,7 +102,7 @@ function changeType() {
 
 document.querySelector('.type__input').addEventListener('change', changeType);
 
-// MATHERIAL
+// -------------------------MATHERIAL-------------
 
 function changeMath() {
     document.querySelectorAll('.card.active').forEach(activecard => {
@@ -113,32 +113,55 @@ function changeMath() {
 
 document.querySelector('.matherial__input').addEventListener('change', changeMath), false;
 
-// COUNT
+// ---------------------COUNT-----------------
 
-let currentCount = parseInt(document.querySelector('.card__count').value);
 
 function plusCount() {
     document.querySelectorAll('.card.active').forEach(activecard => {
-        let newValue = currentCount++;
-
-        document.querySelector('.card__count').value == newValue;
-        let currentValue = parseInt(activecard.querySelector('.countc'))
-        console.log(currentValue);
+        let cardVal = activecard.querySelector('.count_num'); 
+        cardVal.value++;
+        cardVal.innerHTML = `${cardVal}`
+        console.log(cardVal.value);
     })
 }
 
-// function minusCount() {
-//     document.querySelectorAll('.card.active').forEach(activecard => {
-//         let currentSize = document.querySelector('.size__input');
-//         activecard.querySelector('.countc').innerHTML = `${currentSize.value}`;
-//     })
-// }
+function minusCount() {
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        let cardVal = activecard.querySelector('.count_num'); 
+        cardVal.value--;
+        cardVal.innerHTML = `${cardVal}`
+        console.log(cardVal.value);
+    })
+}
 
 document.querySelector('.plus').addEventListener('click', plusCount);
-// document.querySelector('.minus').addEventListener('change', minusCount)
+document.querySelector('.minus').addEventListener('click', minusCount);
+
+// --------------------- SIDEBAR CARD AND PRICE COUNTER --------------------------
+
+function cartCount() {
+    document.querySelectorAll('.count_num').forEach(card => {
+        card.value
+        console.log(card.value);
+
+        document.querySelector('.allcount').innerHTML = `${card.value}`
+    })
+}
+
+cartCount() 
+
+
+
+
+
+
+
+
 
 function clickCard() {
+
     let cards = document.querySelectorAll('.card.active')
+
     console.log(cards);
     document.querySelector('.all-cards').innerHTML = `Обрано ${cards.length}`
 
@@ -147,7 +170,6 @@ function clickCard() {
     } else {
         document.querySelector('.editor').classList.add('active');
     }
-    
 }
 
 // ------------Uploading and create new cards --------------------

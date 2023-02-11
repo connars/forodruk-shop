@@ -410,19 +410,23 @@ input[type=number] {
 
 .card__count-controls {
     background-color: var(--green);
-    width: 20px;
+    width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: 14px;
     font-weight: 700;
-    height: 20px;
+    height: 30px;
+    margin-right: 10px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-
+.count_num {
+    width: 10px;
+    height: 8px;
+}
 
 
 

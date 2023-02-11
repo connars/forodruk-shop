@@ -56,47 +56,7 @@
         </div>
     </div>
 
-    <style>
-     .page {
-	/* margin: 1em auto; */
-	width: 100vw;
-    padding: 0 20px;
-	display: flex;
-    gap: 20px;
-	align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-	flex-wrap: wrap;
-	height: 100%;
-}
 
-.box {
-	padding: 0.5em;
-	width: 100%;
-	margin:0.5em;
-}
-
-
-
-.options label,
-.options input{
-	width:12em;
-	padding:0.5em 1em;
-}
-.btn{
-	cursor:pointer;
-}
-
-.hide {
-	display: none;
-}
-
-img {
-	max-width: 100%;
-}
-
-            </style>
     <hr class="header__line">
   <!-- <div class="firstscreen">
         <h2>Додайте Ваше перше фото</h2>
@@ -139,21 +99,6 @@ img {
         </main> 
     </div> -->
 
-     <!-- <div class="card__box card__counter-box">
-                        <span class="in-mobile">Фотопапір:</span>
-                        <div class="card__count-wrapper">
-                            <div class="card__count-controls minus">
-                                <span>-</span>
-                            </div>
-                            <div class="conter__box"></div>
-                            <input class="card__count" type="number" value="1" >
-                            <div class="card__count-controls plus">
-                                <span>+</span>
-                             </div>
-                        </div>
-                    </div> -->
-
-
     <div class="upload__container">
         <div class="upload__wrapper">
            
@@ -188,8 +133,8 @@ img {
                                 Глянець
                             </span>
                             <span class="card__options countc">
-                                12 шт
-                            </span>
+                                <input type="number" class="count_num" value="2">шт
+                             </span>
                         </div>
                         <div class="card">
                             <span class="card__options size">
@@ -202,8 +147,8 @@ img {
                                 Глянець
                             </span>
                             <span class="card__options countc">
-                                12 шт
-                            </span>
+                                <input type="number" class="count_num" value="1">шт
+                             </span>
                         </div>
                         <div class="card">
                             <span class="card__options size">
@@ -216,8 +161,8 @@ img {
                                 Глянець
                             </span>
                             <span class="card__options countc">
-                                12 шт
-                            </span>
+                                <input type="number" class="count_num" value="1">шт
+                             </span>
                         </div>
                         <div class="card">
                             <span class="card__options size">
@@ -230,8 +175,8 @@ img {
                                 Глянець
                             </span>
                             <span class="card__options countc">
-                                12 шт
-                            </span>
+                                <input type="number" class="count_num" value="1">шт
+                             </span>
                         </div>
                         <div class="card">
                             <span class="card__options size">
@@ -243,8 +188,8 @@ img {
                             <span class="card__options matherial">
                                 Глянець
                             </span>
-                            <span class="card__options">
-                               <span class="countc"> 1</span>шт
+                            <span class="card__options countc">
+                                <input type="number" class="count_num" value="1">шт
                             </span>
                         </div>
                     </div>   
@@ -381,7 +326,7 @@ img {
                                             <p>
                                                 Всього
                                             </p>
-                                            <p>
+                                            <p class="allcount">
                                                 1
                                             </p>
                                             <p>
@@ -461,12 +406,12 @@ img {
             </div>
 
             <div class="editor__option editor__type">
+                <p>Кількість</p>
                 <div class="card__count-wrapper">
                     <div class="card__count-controls minus">
                         <span>-</span>
                     </div>
-                    <div class="conter__box"></div>
-                        <input class="card__count" type="number" value="2" >
+                    
                     <div class="card__count-controls plus">
                         <span>+</span>
                      </div>
@@ -492,10 +437,8 @@ img {
 	
 
 <div id="result"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="./js/main.js"></script>
-
     <script>
         window.onload = function() {
             let preloader = document.getElementById('loader-wrapper');
@@ -504,73 +447,6 @@ img {
       
         }
       </script>
-
-      <script>
-        let result = document.querySelector('.result'),
-            img_result = document.querySelector('.img-result'),
-            img_w = document.querySelector('.img-w'),
-            img_h = document.querySelector('.img-h'),
-            options = document.querySelector('.options'),
-            save = document.querySelector('.save'),
-            cropped = document.querySelector('.cropped'),
-            dwn = document.querySelector('.download'),
-            next = document.querySelector('.next'),
-            upload = document.querySelector('#file-input'),
-            size1 = document.querySelector('.size1'),
-            cropperBox = document.querySelector('.cropper-crop-box'),
-            cropper = '';
-            upload.addEventListener('change', (e) => {
-                if (e.target.files.length) {
-                    const reader = new FileReader();
-                    reader.onload = (e)=> {
-                    if(e.target.result){
-                                let img = document.createElement('img');
-                                img.id = 'image';
-                                img.src = e.target.result
-                                result.innerHTML = '';
-                        result.appendChild(img);
-                                save.classList.remove('hide');
-                                options.classList.remove('hide');
-                                next.classList.remove('hide');
-
-                                
-
-                                function crop1() {
-                                    // cropperBox.classList.add('style1');
-                                    console.log(cropperBox)
-                                }
-
-                                size1.addEventListener('click', crop1);
-
-                                cropper = new Cropper(img);
-
-                    }
-                    };
-                    reader.readAsDataURL(e.target.files[0]);
-                }
-            });
-
-            save.addEventListener('click',(e)=>{
-            e.preventDefault();
-
-            let imgSrc = cropper.getCroppedCanvas({
-                    width: img_w.value 
-                }).toDataURL();
-
-                cropped.classList.remove('hide');
-                img_result.classList.remove('hide');
-                cropped.src = imgSrc;
-                dwn.classList.remove('hide');
-                dwn.download = 'cropped(drukphoto.com).png';
-                dwn.setAttribute('href',imgSrc);
-            });
-
-            
-
-
-      </script>
-
       <script src="./js/cart.js"></script>
-
 </body>
 </html>
