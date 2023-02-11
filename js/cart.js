@@ -77,6 +77,7 @@ document.querySelectorAll('.card').forEach(card => {
     card.addEventListener( 'click', () => {
         card.classList.toggle('active');
         clickCard()
+       
     })
 })
 
@@ -122,6 +123,9 @@ function plusCount() {
         cardVal.value++;
         cardVal.innerHTML = `${cardVal}`
         console.log(cardVal.value);
+
+        cartCount()
+        totalPrice()
     })
 }
 
@@ -131,24 +135,49 @@ function minusCount() {
         cardVal.value--;
         cardVal.innerHTML = `${cardVal}`
         console.log(cardVal.value);
+
+        cartCount()
+        totalPrice()
     })
 }
 
 document.querySelector('.plus').addEventListener('click', plusCount);
 document.querySelector('.minus').addEventListener('click', minusCount);
 
-// --------------------- SIDEBAR CARD AND PRICE COUNTER --------------------------
+// --------------------- SIDEBAR CART AND PRICE COUNTER --------------------------
+let result = 0;
 
 function cartCount() {
-    document.querySelectorAll('.count_num').forEach(card => {
-        card.value
-        console.log(card.value);
-
-        document.querySelector('.allcount').innerHTML = `${card.value}`
-    })
+    let result = 0;
+    document.querySelectorAll('.count_num').forEach( el => {
+            result = result + parseInt(el.value);
+            document.querySelector('.allcount').innerHTML = `${result}`;
+    });
 }
 
-cartCount() 
+cartCount();
+
+
+
+function totalPrice(){
+    let price = 0;
+    
+    document.querySelectorAll('.card').forEach( el => {
+        let totalSize = el.querySelector('.size');
+        totalSize = totalSize.dataset.price;
+
+        let totalCount = el.querySelector('.count_num');
+        totalCount = totalCount.value;
+
+        price = price + (parseInt( totalSize) * parseInt(totalCount));
+        console.log(price);
+        document.querySelector('.totalprice').innerHTML = `${price}`;
+    });
+}
+
+totalPrice()
+
+
 
 
 

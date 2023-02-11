@@ -123,7 +123,7 @@
                     </div>
                     <div class="cards">
                         <div class="card">
-                            <span class="card__options size">
+                            <span data-price="40" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -137,7 +137,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span class="card__options size">
+                            <span data-price="40" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -151,7 +151,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span class="card__options size">
+                            <span data-price="40" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -165,7 +165,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span class="card__options size">
+                            <span data-price="40" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -179,7 +179,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span class="card__options size">
+                            <span data-price="40" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -218,37 +218,15 @@
                                 </div>
                                 <div class="sidebar__accordion-contant">
                                     <div class="details">
-                                        <div class="details__top">
-                                            <p>
-                                                Розмір
-                                            </p>
-                                            <p>
-                                                Кількість
-                                            </p>
-                                            <p>
-                                                Цінa
-                                            </p>
-                                        </div>
-                                        <div class="details__middle">
-                                            <p>
-                                                10х10
-                                            </p>
-                                            <p>
-                                                1
-                                            </p>
-                                            <p>
-                                                1 грн
-                                            </p>
-                                        </div>
                                         <div class="details__bottom">
                                             <p>
                                                 Всього
                                             </p>
                                             <p>
-                                                1
+                                                <span class="allcount"></span> 
                                             </p>
                                             <p>
-                                                1 грн
+                                              <span class="totalprice"></span> грн
                                             </p>
                                         </div>
                                     </div>
@@ -315,7 +293,7 @@
                                             <p>
                                                 10х10
                                             </p>
-                                            <p>
+                                            <p >
                                                 1
                                             </p>
                                             <p>
@@ -326,8 +304,8 @@
                                             <p>
                                                 Всього
                                             </p>
-                                            <p class="allcount">
-                                                1
+                                            <p>
+                                               1
                                             </p>
                                             <p>
                                                 1 грн
@@ -339,16 +317,14 @@
                             <!-- END -->
                         </div>
                     </div>
-                    <div class="sum">
-                        1
-                    </div>
+                
 
                     <div class="upload__sidebar-nav">
                         <button class="upload__sidebar-exit">
                              Назад
                         </button>
 
-                        <button class="order-button upload__sidebar-exit">
+                        <button class="main-btn">
                              Замовити
                        </button>
                     </div>
@@ -366,7 +342,7 @@
             </div>
             <div class="upload__footer-button">
                 <button class="main-btn footer-button">
-                    Продовжити
+                    Продовжити оформлення
                 </button>
             </div>
         </div>
@@ -420,21 +396,6 @@
         </div>
     </div>
 
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-	
 
 <div id="result"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

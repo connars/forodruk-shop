@@ -66,6 +66,7 @@ input#file-upload-button{
 
 .upload__header {
     padding: 20px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -424,8 +425,8 @@ input[type=number] {
 }
 
 .count_num {
-    width: 10px;
-    height: 8px;
+    width: 13px;
+    height: 10px;
 }
 
 
@@ -447,8 +448,9 @@ input[type=number] {
     visibility: hidden;
     width: 100%;
     bottom: 0;
+    height: 100px;
     padding: 10px;
-    background-color: white;
+    background-color: #EEEEEE;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.219);
 }
 
@@ -475,14 +477,32 @@ input[type=number] {
 
     .upload__header-menu {
         display: none;
+        
+    }
+
+    .header__wrapper.active {
+        position: absolute;
+        height: 100%;
+        padding: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    .upload__header {
+      
+    }
+
+    .header.active .container {
+        padding: 0;
     }
 
     .upload__header-title{
         font-size: 26px;
     }
-    /* .upload__footer {
+    .upload__footer {
         visibility: visible;
-    } */
+    }
     .cards {
         width: auto;
         display: flex;
@@ -521,6 +541,10 @@ input[type=number] {
 
     .card {
         /* width: auto; */
+    }
+
+    .editor.active {
+        transform: translateY(-100px);
     }
 
 }
