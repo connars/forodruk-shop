@@ -151,7 +151,9 @@ function cartCount() {
     let result = 0;
     document.querySelectorAll('.count_num').forEach( el => {
             result = result + parseInt(el.value);
-            document.querySelector('.allcount').innerHTML = `${result}`;
+            document.querySelectorAll('.allcount').forEach( count_el =>{
+                count_el.innerHTML = `${result}`;
+            });
     });
 }
 
@@ -161,7 +163,7 @@ cartCount();
 
 function totalPrice(){
     let price = 0;
-    
+
     document.querySelectorAll('.card').forEach( el => {
         let totalSize = el.querySelector('.size');
         totalSize = totalSize.dataset.price;
@@ -171,7 +173,9 @@ function totalPrice(){
 
         price = price + (parseInt( totalSize) * parseInt(totalCount));
         console.log(price);
-        document.querySelector('.totalprice').innerHTML = `${price}`;
+        document.querySelectorAll('.totalprice').forEach(price_el =>{
+            price_el.innerHTML = `${price}`;
+        });
     });
 }
 

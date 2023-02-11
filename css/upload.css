@@ -454,8 +454,18 @@ input[type=number] {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.219);
 }
 
+.upload__footer-stat {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
 .order-button {
     background-color: white;
+    padding: 10px;
+}
+
+.footer-button {
     padding: 10px;
 }
 
