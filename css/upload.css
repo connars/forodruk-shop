@@ -470,17 +470,17 @@ input[type=number] {
     }
 
     .cards {
-        width: auto;
+        /* width: auto;
         margin: 10px;
         display: grid;
         gap: 10px;
         grid-template-columns: 30% 30% 30%;
         justify-content: space-between;
-        gap: 20px;
+        gap: 20px; */
     }
 
     .card {
-        width: auto;
+        /* width: auto; */
     }
 
 }
