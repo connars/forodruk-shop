@@ -69,6 +69,8 @@ input#file-upload-button{
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    border-bottom: 1px solid var(--green);
 }
 
 .upload__header-title{
@@ -128,11 +130,16 @@ input#file-upload-button{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
+    padding-top: 20px;
 }
 
 .card {
     background: url(./../img/1.png);
-    background-size: contain;
+    background-size: cover;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 150px;
     height: 150px;
     transition: 0.3s;
@@ -163,6 +170,7 @@ input#file-upload-button{
 
     background-image: url(../img/icons/Icon.svg);
     background-repeat: no-repeat;
+
     background-position: center;
     transition: 0.3s;
 }
@@ -352,7 +360,31 @@ input[type=number] {
 
 
 
+.editor {
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.199);
+    border-radius: 20px;
+    position: fixed;
+    transform: translateY(200px);
+    transition: 0.4s ease-in-out;
+}
 
+.editor.active {
+    transform: translate(0);
+}
+
+.all-cards {
+    background-color: var(--green);
+    padding: 3px 10px;
+    border-radius: 100px;
+    color: white;
+    position: absolute;
+    margin-top: -12px !important;
+}
 
 
 
@@ -435,6 +467,20 @@ input[type=number] {
         display: flex;
         justify-content: space-between;
         height: auto;
+    }
+
+    .cards {
+        width: auto;
+        margin: 10px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 30% 30% 30%;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .card {
+        width: auto;
     }
 
 }

@@ -71,7 +71,7 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
     })
 })
 
-// ВЫБОР КАРТОЧЕК
+// --------------ВЫБОР КАРТОЧЕК, ВСЕ ДЕЙСТВИЯ---------------
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener( 'click', () => {
@@ -81,22 +81,28 @@ document.querySelectorAll('.card').forEach(card => {
 })
 
 function changeSize() {
-        document.querySelectorAll('.card.active').forEach(activecard => {
-            activecard.querySelector('.type').innerHTML = 'test';
-        })
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        activecard.querySelector('.type').innerHTML = 'test';
+    })
 }
 
-document.querySelector('.change').addEventListener('click', changeSize);
 
-// СЧЕТЧИК КАРТОЧЕК
+document.querySelector('.change').addEventListener('click', changeSize);
 
 function clickCard() {
     let cards = document.querySelectorAll('.card.active')
     console.log(cards);
-    document.querySelector('.all-cards').innerHTML = `${cards.length}`
+    document.querySelector('.all-cards').innerHTML = `Обрано ${cards.length}`
+
+    if(cards.length == ''){
+        document.querySelector('.editor').classList.remove('active');
+    } else {
+        document.querySelector('.editor').classList.add('active');
+    }
+    
 }
 
-// ЗАГРУЗКА ФОТО И СОЗДАНИЕ НОВОЙ КАРТОЧКИ
+// ------------ЗАГРУЗКА ФОТО И СОЗДАНИЕ НОВОЙ КАРТОЧКИ--------------------
 
 let img = document.querySelector('.openUploader').value;
 
