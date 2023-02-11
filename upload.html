@@ -113,17 +113,17 @@
                            
                         </div>
                         <div class="upload__header-menu">
-                            <input style="" class="openUploader" type="file">
+                            <input class="openUploader" type="file" multiple>
 
-                            <a href="" class="main-btn upload-btn">
+                            <button href="" class="main-btn upload-btn">
                                 Додати фото
-                            </a>
+                            </button>
 
                         </div>
                     </div>
                     <div class="cards">
                         <div class="card">
-                            <span data-price="40" class="card__options size">
+                            <span data-price="10" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -133,11 +133,12 @@
                                 Глянець
                             </span>
                             <span class="card__options countc">
-                                <input type="number" class="count_num" value="2">шт
+                                <input type="number" class="count_num" value="2">
+                                <span>шт</span>
                              </span>
                         </div>
                         <div class="card">
-                            <span data-price="40" class="card__options size">
+                            <span data-price="10" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -151,7 +152,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span data-price="40" class="card__options size">
+                            <span data-price="10" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -165,7 +166,7 @@
                              </span>
                         </div>
                         <div class="card">
-                            <span data-price="40" class="card__options size">
+                            <span data-price="10" class="card__options size">
                                 10x20
                             </span>
                             <span class="card__options type">
@@ -178,7 +179,7 @@
                                 <input type="number" class="count_num" value="1">шт
                              </span>
                         </div>
-                        <div class="card">
+                        <!-- <div class="card">
                             <span data-price="40" class="card__options size">
                                 10x20
                             </span>
@@ -191,7 +192,7 @@
                             <span class="card__options countc">
                                 <input type="number" class="count_num" value="1">шт
                             </span>
-                        </div>
+                        </div> -->
                     </div>   
                  
                 </div>
@@ -361,10 +362,10 @@
            <div class="editor__option editor__size">
                 <p>Розмір</p>
                 <select type="text" class="size__input">
-                    <option value="1">10x10</option>
-                    <option value="2">10x20</option>
-                    <option value="3">10x30</option>
-                    <option value="4">10x40</option>
+                    <option data-choseprice="10" value="10x10">10x10</option>
+                    <option data-choseprice="20" value="20x20">20x20</option>
+                    <option data-choseprice="30" value="30x30">30x30</option>
+                    <option data-choseprice="40" value="40x40">40x40</option>
                 </select>
            </div>
 

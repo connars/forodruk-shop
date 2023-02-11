@@ -1,4 +1,64 @@
+// ------------Uploading and create new cards ----------------
+let imgcontainer = document.querySelector('.cards');
+let img = '';
+let input = document.querySelector('.openUploader');
 
+function addCard() {
+    const reader = new FileReader()
+
+    let newDiv = document.createElement("div");
+    newDiv.setAttribute('class', 'card')
+
+    let files = document.querySelector('.openUploader').files;
+
+        reader.onload = async (event) => {
+            newDiv.style.background = `url(${event.target.result})`;
+            newDiv.style.backgroundSize = 'cover';
+            console.log(files);
+
+            cardInit()
+            totalPrice()
+            cartCount()
+        }
+        
+    reader.readAsDataURL(files[0])
+    // CREATE PRICE
+    let pricespan = document.createElement("span");
+    pricespan.setAttribute('data-price','10')
+    pricespan.setAttribute('class','card__options size')
+    pricespan.innerHTML = '10x10';
+    // CREATE TYPE
+    // newDiv.setAttribute('','')
+    // CREATE MATHERIAL
+    // newDiv.setAttribute('','')
+    // CREATE COUNT
+    let countspan = document.createElement("span");
+    let countinput = document.createElement("input");
+    let text = document.createElement("span");
+
+    countspan.setAttribute('class','card__options countc');
+    countinput.setAttribute('type','number')
+    countinput.setAttribute('class','count_num')
+    countinput.setAttribute('value','1')
+    text.innerHTML = 'шт';
+    
+    countspan.appendChild(countinput);
+    countspan.appendChild(text)
+  
+    newDiv.appendChild(pricespan);
+    newDiv.appendChild(countspan);
+    
+
+    imgcontainer.appendChild(newDiv);
+
+    
+    
+}
+
+input.addEventListener('change', addCard)
+
+
+// ------------ open sidebar --------------------
 let cart = document.querySelector('.upload__main-sidebar');
 
 document.querySelector('.footer-button').addEventListener('click',() => {
@@ -72,21 +132,31 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
 })
 
 // -------------- chosing cards and all listeners ---------------
+function cardInit() {
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener( 'click', () => {
+            console.log(card)
 
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener( 'click', () => {
-        card.classList.toggle('active');
-        clickCard()
-       
+            card.classList.toggle('active');
+
+            clickCard()
+        })
     })
-})
+}
 
+
+
+cardInit()
 //------------------------ SIZE-------------------------
 
 function changeSize() {
     document.querySelectorAll('.card.active').forEach(activecard => {
         let currentSize = document.querySelector('.size__input');
+        console.log(currentSize.value);
         activecard.querySelector('.size').innerHTML = `${currentSize.value}`;
+        activecard.querySelector('.size').dataset.price = currentSize.value;
+
+        totalPrice()
     })
 }
 
@@ -162,32 +232,23 @@ cartCount();
 
 
 function totalPrice(){
-    let price = 0;
+    let sum = 0;
 
     document.querySelectorAll('.card').forEach( el => {
-        let totalSize = el.querySelector('.size');
-        totalSize = totalSize.dataset.price;
+        let totalSize = el.querySelector('.size').dataset.price;
 
         let totalCount = el.querySelector('.count_num');
         totalCount = totalCount.value;
 
-        price = price + (parseInt( totalSize) * parseInt(totalCount));
-        console.log(price);
+        sum = sum + (parseInt( totalSize) * parseInt(totalCount));
+        console.log(totalSize);
         document.querySelectorAll('.totalprice').forEach(price_el =>{
-            price_el.innerHTML = `${price}`;
+            price_el.innerHTML = `${sum}`;
         });
     });
 }
 
 totalPrice()
-
-
-
-
-
-
-
-
 
 
 
@@ -205,37 +266,3 @@ function clickCard() {
     }
 }
 
-// ------------Uploading and create new cards --------------------
-
-let img = document.querySelector('.openUploader').value;
-
-// function addCard() {
-//     document.querySelector('.cards').innerHTML = `<div class="card">${img[0]}<div>`;
-// } 
-
-let file1 = document.querySelector('.openUploader');
-
-document.querySelector(".openUploader").addEventListener("change", () => {
-    console.log(file1.file[0]);
-    let result = file1.file[0];
-    
-    file1.addEventListener("load", () => {
-        createCard(result);
-    }, false);
-});
-
-
-let newDiv = document.createElement("div");
-
-function createCard(img) {
- 
-    newDiv.setAttribute("class", "card");
-    newDiv.innerHTML = "<h1>Привет!</h1>";
-    document.querySelectorAll(".card").style.backgroundImage = "url(" + img + ")";
-    console.log('1');
-    // myDiv.innerHTML = `${newDiv}`;
-    let myDiv = document.querySelector('.cards');
-    myDiv.parentNode.insertBefore(newDiv, myDiv.nextSibling); 
-
-    // document.body.insertBefore(newDiv ,myDiv);
-}

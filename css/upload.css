@@ -469,6 +469,10 @@ input[type=number] {
     padding: 10px;
 }
 
+.openUploader {
+    visibility: hidden;
+    position: relative;
+}
 
 @media screen and (max-width: 1000px){
     .upload__main-sidebar {
@@ -486,8 +490,7 @@ input[type=number] {
     }
 
     .upload__header-menu {
-        display: none;
-        
+        /* display: none; */     
     }
 
     .header__wrapper.active {
