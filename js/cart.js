@@ -71,6 +71,8 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
     })
 })
 
+// ВЫБОР КАРТОЧЕК
+
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener( 'click', () => {
         card.classList.toggle('active');
@@ -78,10 +80,53 @@ document.querySelectorAll('.card').forEach(card => {
     })
 })
 
+function changeSize() {
+        document.querySelectorAll('.card.active').forEach(activecard => {
+            activecard.querySelector('.type').innerHTML = 'test';
+        })
+}
+
+document.querySelector('.change').addEventListener('click', changeSize);
+
+// СЧЕТЧИК КАРТОЧЕК
+
 function clickCard() {
     let cards = document.querySelectorAll('.card.active')
     console.log(cards);
     document.querySelector('.all-cards').innerHTML = `${cards.length}`
 }
 
+// ЗАГРУЗКА ФОТО И СОЗДАНИЕ НОВОЙ КАРТОЧКИ
 
+let img = document.querySelector('.openUploader').value;
+
+// function addCard() {
+//     document.querySelector('.cards').innerHTML = `<div class="card">${img[0]}<div>`;
+// } 
+
+let file1 = document.querySelector('.openUploader');
+
+document.querySelector(".openUploader").addEventListener("change", () => {
+    console.log(file1.file[0]);
+    let result = file1.file[0];
+    
+    file1.addEventListener("load", () => {
+        createCard(result);
+    }, false);
+});
+
+
+let newDiv = document.createElement("div");
+
+function createCard(img) {
+ 
+    newDiv.setAttribute("class", "card");
+    newDiv.innerHTML = "<h1>Привет!</h1>";
+    document.querySelectorAll(".card").style.backgroundImage = "url(" + img + ")";
+    console.log('1');
+    // myDiv.innerHTML = `${newDiv}`;
+    let myDiv = document.querySelector('.cards');
+    myDiv.parentNode.insertBefore(newDiv, myDiv.nextSibling); 
+
+    // document.body.insertBefore(newDiv ,myDiv);
+}

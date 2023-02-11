@@ -143,6 +143,8 @@ input#file-upload-button{
     gap: 4px;
     align-items: flex-start;
     padding: 4px;
+
+    cursor: pointer;
 }
 
 .card.active::before {
