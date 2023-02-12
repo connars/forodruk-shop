@@ -14,11 +14,15 @@ function addCard() {
         reader.onload = async (event) => {
             newDiv.style.background = `url(${event.target.result})`;
             newDiv.style.backgroundSize = 'cover';
-            console.log(files);
+            // console.log(files);
 
-            cardInit()
+            // cardInit()
             totalPrice()
             cartCount()
+
+            document.querySelector('.firstscreen').style.display = 'none';
+
+          
         }
         
     reader.readAsDataURL(files[0])
@@ -28,8 +32,14 @@ function addCard() {
     pricespan.setAttribute('class','card__options size')
     pricespan.innerHTML = '10x10';
     // CREATE TYPE
-    // newDiv.setAttribute('','')
+    let typespan = document.createElement("span");
+    typespan.setAttribute('class','card__options type');
+    typespan.innerHTML = 'Без полів';
     // CREATE MATHERIAL
+    let mathspan = document.createElement("span");
+    mathspan.setAttribute('class','card__options matherial');
+    mathspan.innerHTML = 'Глянець';
+
     // newDiv.setAttribute('','')
     // CREATE COUNT
     let countspan = document.createElement("span");
@@ -44,15 +54,13 @@ function addCard() {
     
     countspan.appendChild(countinput);
     countspan.appendChild(text)
-  
+    // ADD CARD SETTINGS
     newDiv.appendChild(pricespan);
+    newDiv.appendChild(typespan);
+    newDiv.appendChild(mathspan);
     newDiv.appendChild(countspan);
-    
 
     imgcontainer.appendChild(newDiv);
-
-    
-    
 }
 
 input.addEventListener('change', addCard)
@@ -132,21 +140,25 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
 })
 
 // -------------- chosing cards and all listeners ---------------
-function cardInit() {
-    document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener( 'click', () => {
-            console.log(card)
 
-            card.classList.toggle('active');
+    document.querySelector('.cards').addEventListener( 'click', e => {
+        // if( e.target.classList.contains('active')){
+        //     e.target.classList.remove('active');
+        //     console.log('1');
+        // } else {
+        //     e.target.classList.add('active');
+        //     console.log('2');
+        // }
+
+        if ( e.target.classList.contains('card') || e.target.closest('.card') ) {
+            e.target.classList.toggle('active');
 
             clickCard()
-        })
+        }
+       
     })
-}
 
-
-
-cardInit()
+// ВЫЗЫВАЕТСЯ НА 4 СТРОКЕ
 //------------------------ SIZE-------------------------
 
 function changeSize() {

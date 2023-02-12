@@ -35,7 +35,7 @@
             <div class="header__wrapper">
                 <div class="header__left">
                     <a href="/">
-                        LOGO
+                        Фотодрук <span>online</span>
                     </a>
                 </div>
                 <div class="header__center">
@@ -58,46 +58,14 @@
 
 
     <hr class="header__line">
-  <!-- <div class="firstscreen">
-        <h2>Додайте Ваше перше фото</h2>
-        <input  type="file"/>
-
-
-
-       <main class="page">
-            <img src="./img/upload.svg" alt="">
-            <h2>Додайте Ваше перше фото</h2>
-           
-            <div class="box">
-                <input class="" type="file" id="file-input"/>
-            </div>
-           
-            <div class="box-2">
-                <div class="result"></div>
-            </div>
-        
-            <div class="box-2 img-result hide">
-             
-                <img class="cropped" src="" alt="">
-            </div>
-     
-            <div class="box settings">
-                <div class="options hide">
-                    <label> Width</label>
-                    <input type="number" class="img-w" value="300" min="100" max="1200" />
-                </div>
-                <div class="box-buttons">
-                  
-                    <button class="btn save hide main-btn">Обрізати</button>
-                   
-                    <a href="" class="btn download hide main-btn">Завантажити</a>
-                
-                    <button class="btn next hide main-btn">Продовжити</button>
-                </div>
-                <div style="width: 100px; height: 100px; cursor: pointer;"  class="size1">9x13</div>
-            </div>
-        </main> 
-    </div> -->
+    
+    <div class="firstscreen">
+        <div class="firstscreen__wrapper">
+            <button class="upload-btn main-btn">
+                Завантажити
+            </button>
+        </div>
+    </div>
 
     <div class="upload__container">
         <div class="upload__wrapper">
@@ -122,7 +90,7 @@
                         </div>
                     </div>
                     <div class="cards">
-                        <div class="card">
+                        <!-- <div class="card">
                             <span data-price="10" class="card__options size">
                                 10x20
                             </span>
@@ -136,49 +104,7 @@
                                 <input type="number" class="count_num" value="2">
                                 <span>шт</span>
                              </span>
-                        </div>
-                        <div class="card">
-                            <span data-price="10" class="card__options size">
-                                10x20
-                            </span>
-                            <span class="card__options type">
-                                Без полів
-                            </span>
-                            <span class="card__options matherial">
-                                Глянець
-                            </span>
-                            <span class="card__options countc">
-                                <input type="number" class="count_num" value="1">шт
-                             </span>
-                        </div>
-                        <div class="card">
-                            <span data-price="10" class="card__options size">
-                                10x20
-                            </span>
-                            <span class="card__options type">
-                                Без полів
-                            </span>
-                            <span class="card__options matherial">
-                                Глянець
-                            </span>
-                            <span class="card__options countc">
-                                <input type="number" class="count_num" value="1">шт
-                             </span>
-                        </div>
-                        <div class="card">
-                            <span data-price="10" class="card__options size">
-                                10x20
-                            </span>
-                            <span class="card__options type">
-                                Без полів
-                            </span>
-                            <span class="card__options matherial">
-                                Глянець
-                            </span>
-                            <span class="card__options countc">
-                                <input type="number" class="count_num" value="1">шт
-                             </span>
-                        </div>
+                        </div> -->
                         <!-- <div class="card">
                             <span data-price="40" class="card__options size">
                                 10x20
@@ -338,10 +264,10 @@
         <div class="container">
             <div class="upload__footer-stat">
                 <div class="sum-m">
-                   Всьго : <span class="allcount"></span> шт
+                   Всьго : <span class="allcount">0</span> шт
                 </div>
                 <div class="sum-m">
-                   Сумма <span class="totalprice"></span> грн
+                   Сумма <span class="totalprice">0</span> грн
                 </div>
             </div>
             <div class="upload__footer-button">
@@ -370,7 +296,7 @@
            </div>
 
            <div class="editor__option editor__type">
-                <p>Розмір</p>
+                <p>Тип</p>
                 <select type="text" class="type__input">
                     <option value="Без полів">Без полів</option>
                     <option value="З полями">З полями</option>
@@ -378,7 +304,7 @@
             </div>
 
             <div class="editor__option editor__type">
-                <p>Розмір</p>
+                <p>Матеріал</p>
                 <select type="text" class="matherial__input">
                     <option value="Глянець">Глянець</option>
                     <option value="Мат">Мат</option>
@@ -386,7 +312,7 @@
             </div>
 
             <div class="editor__option editor__type">
-                <p>Кількість</p>
+                <p>Кіл-ть</p>
                 <div class="card__count-wrapper">
                     <div class="card__count-controls minus">
                         <span>-</span>
