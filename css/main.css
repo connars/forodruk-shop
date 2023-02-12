@@ -178,6 +178,24 @@
         font-size: 24px;
         font-weight: 700;
     }
+
+    .m-header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0;
+        position: fixed;
+
+        top: 15px;
+        right: 15px;
+        width: 50px !important;
+        height: 50px !important;
+        z-index: 9999;
+    }
+    .m-header .burger {
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.288);
+        width: 50px !important;
+        height: 50px !important;
+    }
 }
 
 /* HEADER END  */

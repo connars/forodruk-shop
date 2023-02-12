@@ -307,6 +307,16 @@ input#file-upload-button{
 }
 
 
+@media screen and (max-width: 900px){
+    .details__bottom {
+        border: 0;
+    }
+
+    .details__bottom p{
+        font-size: 20px;
+    }
+}
+
 
 
 
@@ -471,7 +481,7 @@ input[type=number] {
 
 .openUploader {
     visibility: hidden;
-    position: relative;
+    position: absolute;
 }
 
 @media screen and (max-width: 1000px){
@@ -503,7 +513,8 @@ input[type=number] {
     }
 
     .upload__header {
-      
+        justify-content: flex-start;
+        gap: 40px;  
     }
 
     .header.active .container {
