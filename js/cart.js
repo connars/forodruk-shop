@@ -151,11 +151,11 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
         // }
 
         if ( e.target.classList.contains('card') || e.target.closest('.card') ) {
-            e.target.classList.toggle('active');
-
+            // e.target.classList.toggle('active');
+            (e.target.closest('.card') || e.target).classList.toggle('active')
+            console.log('1');
             clickCard()
         }
-       
     })
 
 // ВЫЗЫВАЕТСЯ НА 4 СТРОКЕ
