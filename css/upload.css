@@ -8,6 +8,20 @@
     height: 100vh;
 }
 
+html {
+    scroll-behavior: smooth  !important;
+    overflow-x: hidden !important;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Manrope', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden !important;
+    background-attachment: fixed;
+}
+
+
 #file-input {
     background-color: var(--green);
 }
@@ -482,6 +496,8 @@ input[type=number] {
 .openUploader {
     visibility: hidden;
     position: absolute;
+    width: 1px;
+    height: 1px;
 }
 
 @media screen and (max-width: 1000px){
