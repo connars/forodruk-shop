@@ -2,31 +2,49 @@
 let imgcontainer = document.querySelector('.cards');
 let img = '';
 let input = document.querySelector('.openUploader');
+let imagesArray = [];
 
 function addCard() {
     const reader = new FileReader()
+    let files = document.querySelector('.openUploader').files;
+        // reader.onload = async (e) => {
+          
 
+            // for (var i = 0; i < files.length; i++) {
+            //     console.log(files[i].result);
+            //     console.log(e.target.result);
+            //     console.log(files[i]);
+            //     CREATE(files[i]);
+            // }
+
+            reader.addEventListener("loadend", () => {
+                document.querySelector('.firstscreen').style.display = 'none';
+                    for (var i = 0; i < files.length; i++) {
+                        imagesArray.push(files[i]);    
+                    }    
+                    imagesArray.forEach(image => {
+                          CREATE(URL.createObjectURL(image));
+                    })
+                    totalPrice()
+                    cartCount()
+            }, false);
+
+           
+        // }
+        reader.readAsDataURL(files[0])
+        // console.log(files);
+}
+
+function CREATE(img) {
     let newDiv = document.createElement("div");
     newDiv.setAttribute('class', 'card')
-
-    let files = document.querySelector('.openUploader').files;
-
-        reader.onload = async (event) => {
-            newDiv.style.background = `url(${event.target.result})`;
-            newDiv.style.backgroundSize = 'cover';
-            // console.log(files);
-
-            // cardInit()
-            totalPrice()
-            cartCount()
-
-            document.querySelector('.firstscreen').style.display = 'none';
-
-          
-        }
-        
-    reader.readAsDataURL(files[0])
-    // CREATE PRICE
+    newDiv.style.background = `url(${img})`;
+    newDiv.style.backgroundSize = 'cover';
+                
+    // cardInit()
+               
+   
+     // CREATE PRICE
     let pricespan = document.createElement("span");
     pricespan.setAttribute('data-price','10')
     pricespan.setAttribute('class','card__options size')
@@ -39,7 +57,6 @@ function addCard() {
     let mathspan = document.createElement("span");
     mathspan.setAttribute('class','card__options matherial');
     mathspan.innerHTML = 'Глянець';
-
     // newDiv.setAttribute('','')
     // CREATE COUNT
     let countspan = document.createElement("span");
@@ -65,6 +82,20 @@ function addCard() {
 
 input.addEventListener('change', addCard)
 
+
+// DELETE CARD
+
+// COPY CARD 
+document.querySelector('.header__center').addEventListener('click',() =>{
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        let copyElems = activecard.cloneNode(true);
+
+        imgcontainer.appendChild(copyElems);
+        totalPrice()
+        cartCount()
+        clickCard()
+    })
+});
 
 // ------------ open sidebar --------------------
 let cart = document.querySelector('.upload__main-sidebar');
@@ -139,21 +170,11 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
     })
 })
 
-// -------------- chosing cards and all listeners ---------------
+// -------------- choosing cards and all listeners ---------------
 
     document.querySelector('.cards').addEventListener( 'click', e => {
-        // if( e.target.classList.contains('active')){
-        //     e.target.classList.remove('active');
-        //     console.log('1');
-        // } else {
-        //     e.target.classList.add('active');
-        //     console.log('2');
-        // }
-
         if ( e.target.classList.contains('card') || e.target.closest('.card') ) {
-            // e.target.classList.toggle('active');
             (e.target.closest('.card') || e.target).classList.toggle('active')
-            console.log('1');
             clickCard()
         }
     })
@@ -201,10 +222,15 @@ document.querySelector('.matherial__input').addEventListener('change', changeMat
 
 function plusCount() {
     document.querySelectorAll('.card.active').forEach(activecard => {
-        let cardVal = activecard.querySelector('.count_num'); 
+        let cardVal = activecard.querySelector('.count_num');
         cardVal.value++;
         cardVal.innerHTML = `${cardVal}`
-        console.log(cardVal.value);
+        // console.log(cardVal.value);
+
+        if (cardVal.value < 1) {
+            cardVal.value = 1;
+            // console.log(cardVal.value);
+        }
 
         cartCount()
         totalPrice()
@@ -216,7 +242,12 @@ function minusCount() {
         let cardVal = activecard.querySelector('.count_num'); 
         cardVal.value--;
         cardVal.innerHTML = `${cardVal}`
-        console.log(cardVal.value);
+        // console.log(cardVal.value);
+
+        if (cardVal.value < 1) {
+            cardVal.value = 1;
+            // console.log(cardVal.value);
+        }
 
         cartCount()
         totalPrice()
@@ -253,7 +284,7 @@ function totalPrice(){
         totalCount = totalCount.value;
 
         sum = sum + (parseInt( totalSize) * parseInt(totalCount));
-        console.log(totalSize);
+        // console.log(totalSize);
         document.querySelectorAll('.totalprice').forEach(price_el =>{
             price_el.innerHTML = `${sum}`;
         });
