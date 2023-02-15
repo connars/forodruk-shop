@@ -1,22 +1,12 @@
+
 // ------------Uploading and create new cards ----------------
 let imgcontainer = document.querySelector('.cards');
-let img = '';
 let input = document.querySelector('.openUploader');
 let imagesArray = [];
 
 function addCard() {
     const reader = new FileReader()
-    let files = document.querySelector('.openUploader').files;
-        // reader.onload = async (e) => {
-          
-
-            // for (var i = 0; i < files.length; i++) {
-            //     console.log(files[i].result);
-            //     console.log(e.target.result);
-            //     console.log(files[i]);
-            //     CREATE(files[i]);
-            // }
-
+        let files = document.querySelector('.openUploader').files;
             reader.addEventListener("loadend", () => {
                 document.querySelector('.firstscreen').style.display = 'none';
                     for (var i = 0; i < files.length; i++) {
@@ -28,11 +18,7 @@ function addCard() {
                     totalPrice()
                     cartCount()
             }, false);
-
-           
-        // }
         reader.readAsDataURL(files[0])
-        // console.log(files);
 }
 
 function CREATE(img) {
@@ -40,10 +26,6 @@ function CREATE(img) {
     newDiv.setAttribute('class', 'card')
     newDiv.style.background = `url(${img})`;
     newDiv.style.backgroundSize = 'cover';
-                
-    // cardInit()
-               
-   
      // CREATE PRICE
     let pricespan = document.createElement("span");
     pricespan.setAttribute('data-price','10')
@@ -57,12 +39,10 @@ function CREATE(img) {
     let mathspan = document.createElement("span");
     mathspan.setAttribute('class','card__options matherial');
     mathspan.innerHTML = 'Глянець';
-    // newDiv.setAttribute('','')
     // CREATE COUNT
     let countspan = document.createElement("span");
     let countinput = document.createElement("input");
     let text = document.createElement("span");
-
     countspan.setAttribute('class','card__options countc');
     countinput.setAttribute('type','number')
     countinput.setAttribute('class','count_num')
@@ -84,12 +64,18 @@ input.addEventListener('change', addCard)
 
 
 // DELETE CARD
-
+document.querySelector('.trash').addEventListener('click',() =>{
+    document.querySelectorAll('.card.active').forEach(activecard => {
+        activecard.remove();
+        totalPrice()
+        cartCount()
+        clickCard()
+    })
+});
 // COPY CARD 
-document.querySelector('.header__center').addEventListener('click',() =>{
+document.querySelector('.dublicate').addEventListener('click',() =>{
     document.querySelectorAll('.card.active').forEach(activecard => {
         let copyElems = activecard.cloneNode(true);
-
         imgcontainer.appendChild(copyElems);
         totalPrice()
         cartCount()
@@ -119,7 +105,6 @@ document.querySelector('.upload__sidebar-exit').addEventListener('click',() => {
 let accordionItem = document.querySelectorAll('.sidebar__accordion-title');
 let accordionBody = document.querySelectorAll('.sidebar__accordion-item');
 
-let formInput = 1;
 let check = document.querySelectorAll('.check');
 
 accordionItem[0].addEventListener('click', () => {
@@ -147,19 +132,20 @@ accordionItem[1].addEventListener('click', () => {
 }, false)
 
 accordionItem[2].addEventListener('click', () => {
+
     if(accordionBody[2].classList.contains('active')) {
         accordionBody[2].classList.remove('active');
        
     } else if(accordionItem[0].classList.contains('active')){
         accordionBody[1].classList.add('active')
         accordionBody[0].classList.remove('active')
-    } else if (formInput == '') {
-        alert('Заполните форму')
+    } else if ( document.querySelector('.name').value !== '' && document.querySelector('.surname').value !== '' && document.querySelector('.phone').value !== '') {
+            accordionBody[0].classList.remove('active')
+            accordionBody[1].classList.remove('active')
+            accordionBody[2].classList.add('active')
+            check[1].classList.add('active')
     } else {
-        accordionBody[0].classList.remove('active')
-        accordionBody[1].classList.remove('active')
-        accordionBody[2].classList.add('active')
-        check[1].classList.add('active')
+        alert('Заполните форму')
     }
 })
 
@@ -179,7 +165,6 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
         }
     })
 
-// ВЫЗЫВАЕТСЯ НА 4 СТРОКЕ
 //------------------------ SIZE-------------------------
 
 function changeSize() {

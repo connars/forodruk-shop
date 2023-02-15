@@ -7,8 +7,6 @@ body {
     background-color: var(--bg);
     font-family: 'Manrope', sans-serif;
     scroll-behavior: smooth;
-    overflow-x: hidden !important;
-    background-attachment: fixed;
 }
 
 .container {
@@ -25,14 +23,12 @@ body {
     color: white;
     transition: 0.3s ease-in-out;
     cursor: pointer;
-
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
     /* identical to box height */
-
     text-align: center;
     letter-spacing: 0.055em;
 
