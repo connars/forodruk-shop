@@ -128,8 +128,10 @@
                 </div>
 
                 <div class="upload__main-sidebar">
+                    
                     <div class="sidebar__wrapper">
                         <div class="sidebar__accordion">
+                            <form class="form" if="form">
                             <!-- START -->
                             <div class="sidebar__accordion-item active">
                                 <div class="sidebar__accordion-title">
@@ -250,22 +252,21 @@
 
                             <!-- START -->
                             <div class="sidebar__accordion-item">
-                                <button class="main-btn">
+                                <button class="main-btn pay">
                                     До оплати
                                 </button>
                                    
                             </div>
                             <!-- END -->
+                            </form>
                         </div>
                     </div>
-                
-
                     <div class="upload__sidebar-nav">
                         <button class="upload__sidebar-exit">
                              Назад
                         </button>
 
-                        <button class="main-btn">
+                        <button class="main-btn" disabled>
                              Замовити
                        </button>
                     </div>
@@ -340,12 +341,12 @@
 
             <div class="editor__option editor__icons">
                 <div class="dublicate">
-                    <svg width="" height="" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.33335 5.25V11.25C6.33335 12.0784 7.04224 12.75 7.91669 12.75H12.6667M6.33335 5.25V3.75C6.33335 2.92157 7.04224 2.25 7.91669 2.25H11.5471C11.7571 2.25 11.9584 2.32902 12.1069 2.46967L15.6015 5.78033C15.7499 5.92098 15.8334 6.11175 15.8334 6.31066V11.25C15.8334 12.0784 15.1245 12.75 14.25 12.75H12.6667M6.33335 5.25H5.16669C4.06212 5.25 3.16669 6.14543 3.16669 7.25V14.25C3.16669 15.0784 3.87557 15.75 4.75002 15.75H10.6667C11.7713 15.75 12.6667 14.8546 12.6667 13.75V12.75" stroke="#8BC34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <div class="trash">
-                    <svg width="" height="" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.0417 5.25L14.3551 14.3569C14.2959 15.1418 13.6064 15.75 12.7757 15.75H6.22429C5.39361 15.75 4.70417 15.1418 4.64498 14.3569L3.95835 5.25M7.91669 8.25V12.75M11.0834 8.25V12.75M11.875 5.25V3C11.875 2.58579 11.5206 2.25 11.0834 2.25H7.91669C7.47946 2.25 7.12502 2.58579 7.12502 3V5.25M3.16669 5.25H15.8334" stroke="#8BC34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>                         
                 </div>
@@ -355,6 +356,7 @@
 
 
 <div id="result"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js" integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="./js/main.js"></script>
     <script>

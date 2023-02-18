@@ -1,4 +1,3 @@
-
 // ------------Uploading and create new cards ----------------
 let imgcontainer = document.querySelector('.cards');
 let input = document.querySelector('.openUploader');
@@ -7,23 +6,22 @@ let imagesArray = [];
 function addCard() {
     const reader = new FileReader()
         let files = document.querySelector('.openUploader').files;
-            reader.addEventListener("loadend", () => {
+            reader.addEventListener("loadend", (e) => {
                 document.querySelector('.firstscreen').style.display = 'none';
                     for (var i = 0; i < files.length; i++) {
-                        imagesArray.push(files[i]);    
+                        imagesArray.push(files[i]); 
+                        CREATE(URL.createObjectURL(files[i]), files[i].name);
                     }    
-                    imagesArray.forEach(image => {
-                          CREATE(URL.createObjectURL(image));
-                    })
                     totalPrice()
                     cartCount()
             }, false);
         reader.readAsDataURL(files[0])
 }
 
-function CREATE(img) {
+function CREATE(img,name) {
     let newDiv = document.createElement("div");
     newDiv.setAttribute('class', 'card')
+    newDiv.setAttribute('data-filename',`${name}`)
     newDiv.style.background = `url(${img})`;
     newDiv.style.backgroundSize = 'cover';
      // CREATE PRICE
@@ -66,12 +64,23 @@ input.addEventListener('change', addCard)
 // DELETE CARD
 document.querySelector('.trash').addEventListener('click',() =>{
     document.querySelectorAll('.card.active').forEach(activecard => {
+        const filename = activecard.getAttribute('data-filename');
+        removeFileFromImagesArray(filename);
         activecard.remove();
         totalPrice()
         cartCount()
         clickCard()
     })
 });
+
+function removeFileFromImagesArray(filename) {
+    const index = imagesArray.findIndex(file => file.name === filename);
+    if (index !== -1) {
+      imagesArray.splice(index, 1);
+    }
+    console.log(imagesArray);
+}
+
 // COPY CARD 
 document.querySelector('.dublicate').addEventListener('click',() =>{
     document.querySelectorAll('.card.active').forEach(activecard => {
@@ -102,52 +111,44 @@ document.querySelector('.upload__sidebar-exit').addEventListener('click',() => {
     }
 });
 
-let accordionItem = document.querySelectorAll('.sidebar__accordion-title');
-let accordionBody = document.querySelectorAll('.sidebar__accordion-item');
 
-let check = document.querySelectorAll('.check');
+const accordionTitles = document.querySelectorAll('.sidebar__accordion-title');
 
-accordionItem[0].addEventListener('click', () => {
-    if(accordionBody[0].classList.contains('active')) {
-        accordionBody[0].classList.remove('active')
-        check[0].classList.add('active')
+accordionTitles.forEach(title => {
+  title.addEventListener('click', () => {
+    const item = title.parentElement;
+    const content = item.querySelector('.sidebar__accordion-contant');
+    if (item.classList.contains('active')) {
+      item.classList.remove('active');
+      content.style.maxHeight = null;
     } else {
-        check[0].classList.remove('active')
-        accordionBody[0].classList.add('active')  
-        accordionBody[1].classList.remove('active')
-        accordionBody[2].classList.remove('active')
+      item.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + "px";
     }
-})
+  });
+});
 
-accordionItem[1].addEventListener('click', () => {
-    if(accordionBody[1].classList.contains('active')) {
-        accordionBody[1].classList.remove('active')
-    } else {
-        check[0].classList.add('active')
-        check[1].classList.remove('active')
-        accordionBody[0].classList.remove('active')
-        accordionBody[1].classList.add('active')
-        accordionBody[2].classList.remove('active')
+const submitButton = document.querySelector('.pay');
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const nameInput = document.querySelector('.name');
+  const surnameInput = document.querySelector('.surname');
+  const phoneInput = document.querySelector('.phone');
+
+  if (!nameInput.value || !surnameInput.value || !phoneInput.value) {
+    alert('Пожалуйста, заполните все обязательные поля');
+  } else {
+            let amount = 0;
+            document.querySelectorAll('.card').forEach( el => {
+                let totalSize = el.querySelector('.size').dataset.price;
+                let totalCount = el.querySelector('.count_num');
+                totalCount = totalCount.value;
+                amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
+            });
+        PAY(amount);
     }
-}, false)
-
-accordionItem[2].addEventListener('click', () => {
-
-    if(accordionBody[2].classList.contains('active')) {
-        accordionBody[2].classList.remove('active');
-       
-    } else if(accordionItem[0].classList.contains('active')){
-        accordionBody[1].classList.add('active')
-        accordionBody[0].classList.remove('active')
-    } else if ( document.querySelector('.name').value !== '' && document.querySelector('.surname').value !== '' && document.querySelector('.phone').value !== '') {
-            accordionBody[0].classList.remove('active')
-            accordionBody[1].classList.remove('active')
-            accordionBody[2].classList.add('active')
-            check[1].classList.add('active')
-    } else {
-        alert('Заполните форму')
-    }
-})
+});
 
 let imgUploader = document.querySelector('.openUploader');
 document.querySelectorAll('.upload-btn').forEach( uploadButton => {
@@ -155,6 +156,35 @@ document.querySelectorAll('.upload-btn').forEach( uploadButton => {
         imgUploader.click();
     })
 })
+
+
+function PAY(sum) {
+    fetch('https://api.monobank.ua/api/merchant/invoice/create', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Token': 'u-Lz3ZxhSN0pc_tIxt_EfLjocKZLVnwk-9z5F-bampEE'
+        },
+        body: JSON.stringify({
+          amount: sum,
+          ccy: 980,
+          redirectUrl: 'https://example.com/your/website/result/page',
+          webHookUrl: 'https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily',
+          validity: 3600,
+          paymentType: 'debit',
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+            if (data.hasOwnProperty('pageUrl')) {
+                window.location.replace(data.pageUrl);
+            }
+      })
+      .catch(error => console.error(error));   
+
+}
+
 
 // -------------- choosing cards and all listeners ---------------
 
@@ -258,7 +288,6 @@ function cartCount() {
 cartCount();
 
 
-
 function totalPrice(){
     let sum = 0;
 
@@ -273,6 +302,7 @@ function totalPrice(){
         document.querySelectorAll('.totalprice').forEach(price_el =>{
             price_el.innerHTML = `${sum}`;
         });
+
     });
 }
 
@@ -294,3 +324,49 @@ function clickCard() {
     }
 }
 
+
+
+
+function sendForm() {
+        fetch('https://fotka.salesdrive.me/handler/', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: {
+                form: 'DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp',
+                getResultData: '1',
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    // .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+}
+
+function SAVE() {
+    const formData = new FormData();
+    const photos = imagesArray;
+  
+    for (let i = 0; i < photos.length; i++) {
+      formData.append('photos', photos[i]);
+    }
+  
+    formData.append('name', 'John');
+    formData.append('surname', 'Doe');
+    formData.append('email', 'john.doe@example.com');
+    formData.append('phone', '+1 555-555-5555');
+  
+    fetch('http://127.0.0.1:1228/upload', {
+      method: 'POST',
+      mode: 'no-cors', 
+      body: formData
+    })
+    .then(response => { 
+      console.log('Upload successful', response);
+    })
+    .catch(error => { 
+      console.error('Error uploading photos:', error);
+    });
+}
