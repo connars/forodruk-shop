@@ -237,7 +237,11 @@ ounter-box {
     overflow: hidden;
     transition: 0.3s;
     height: 81px;
-    
+}
+
+.sidebar__accordion-item-last {
+    text-align: center;
+    padding-top: 20px;
 }
 
 .sidebar__accordion-item.active {
@@ -501,7 +505,9 @@ input[type=number] {
 
 
 
-
+.form {
+    height: 100vh;
+}
 
 
 

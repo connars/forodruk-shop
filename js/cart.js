@@ -11,7 +11,7 @@ function addCard() {
                     for (var i = 0; i < files.length; i++) {
                         imagesArray.push(files[i]); 
                         CREATE(URL.createObjectURL(files[i]), files[i].name);
-                    }    
+                    } 
                     totalPrice()
                     cartCount()
             }, false);
@@ -139,14 +139,8 @@ submitButton.addEventListener('click', (event) => {
   if (!nameInput.value || !surnameInput.value || !phoneInput.value) {
     alert('Пожалуйста, заполните все обязательные поля');
   } else {
-            let amount = 0;
-            document.querySelectorAll('.card').forEach( el => {
-                let totalSize = el.querySelector('.size').dataset.price;
-                let totalCount = el.querySelector('.count_num');
-                totalCount = totalCount.value;
-                amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
-            });
-        PAY(amount);
+    
+        SAVE()
     }
 });
 
@@ -293,12 +287,9 @@ function totalPrice(){
 
     document.querySelectorAll('.card').forEach( el => {
         let totalSize = el.querySelector('.size').dataset.price;
-
         let totalCount = el.querySelector('.count_num');
         totalCount = totalCount.value;
-
         sum = sum + (parseInt( totalSize) * parseInt(totalCount));
-        // console.log(totalSize);
         document.querySelectorAll('.totalprice').forEach(price_el =>{
             price_el.innerHTML = `${sum}`;
         });
@@ -308,15 +299,9 @@ function totalPrice(){
 
 totalPrice()
 
-
-
 function clickCard() {
-
     let cards = document.querySelectorAll('.card.active')
-
-    console.log(cards);
     document.querySelector('.all-cards').innerHTML = `Обрано ${cards.length}`
-
     if(cards.length == ''){
         document.querySelector('.editor').classList.remove('active');
     } else {
@@ -345,28 +330,100 @@ function sendForm() {
 
 }
 
+
+const nameInput = document.querySelector('.name');
+const surnameInput = document.querySelector('.surname');
+const phoneInput = document.querySelector('.phone');
+const emailInput = document.querySelector('.email');
+
+const payButton = document.querySelector('.pay');
+
+function togglePayButton() {
+  if (nameInput.value && surnameInput.value && phoneInput.value && emailInput.value) {
+    payButton.removeAttribute('disabled');
+  } else {
+    payButton.setAttribute('disabled', 'disabled');
+  }
+}
+
+nameInput.addEventListener('input', togglePayButton);
+surnameInput.addEventListener('input', togglePayButton);
+phoneInput.addEventListener('input', togglePayButton);
+emailInput.addEventListener('input', togglePayButton);
+
+togglePayButton();
+
+document.getElementById('loader-wrapper2').classList.add('hidden');
+
 function SAVE() {
+    document.getElementById('loader-wrapper').classList.remove('hidden');
+    document.getElementById('loader-wrapper2').classList.add('visible');
+    
     const formData = new FormData();
     const photos = imagesArray;
   
-    for (let i = 0; i < photos.length; i++) {
-      formData.append('photos', photos[i]);
+    const nameInput = document.querySelector('.name');
+    const surnameInput = document.querySelector('.surname');
+    const phoneInput = document.querySelector('.phone');
+    const emailInput = document.querySelector('.email');
+  
+    const name = nameInput.value;
+    const surname = surnameInput.value;
+    const phone = phoneInput.value;
+    const email = emailInput.value;
+  
+    formData.append('name', name);
+    formData.append('surname', surname);
+    formData.append('phone', phone);
+    formData.append('email', email);
+  
+    const newPhotos = photos.map(photo => {
+        const card = document.querySelector(`[data-filename="${photo.name}"]`);
+        if (card) {
+          const price = card.querySelector('.size').dataset.price;
+          const newName = `${transliterate(card.innerText.trim().replace(/[\s\n]+/g, '_'))}_${price}_${transliterate(photo.name).replace(/\s+/g, '_')}`;
+          photo.name = newName;
+          console.log(newName);
+          return new File([photo], newName);
+        } else {
+          return photo;
+        }
+    });
+  
+    for (let i = 0; i < newPhotos.length; i++) {
+      formData.append('photos', newPhotos[i]);
     }
   
-    formData.append('name', 'John');
-    formData.append('surname', 'Doe');
-    formData.append('email', 'john.doe@example.com');
-    formData.append('phone', '+1 555-555-5555');
+    console.log(formData);
+
+      let amount = 0;
+      document.querySelectorAll('.card').forEach( el => {
+          let totalSize = el.querySelector('.size').dataset.price;
+          let totalCount = el.querySelector('.count_num');
+          totalCount = totalCount.value;
+          amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
+      });
+      
   
     fetch('http://127.0.0.1:1228/upload', {
-      method: 'POST',
-      mode: 'no-cors', 
-      body: formData
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData,
     })
-    .then(response => { 
-      console.log('Upload successful', response);
+    .then(response => {
+        console.log('Upload successful', response);
+        document.getElementById('loader-wrapper2').classList.remove('visible');
+        document.getElementById('loader-wrapper2').classList.add('hidden');
+        PAY(amount);
+        
     })
-    .catch(error => { 
-      console.error('Error uploading photos:', error);
+    .catch(error => {
+        console.error('Error uploading photos:', error);
     });
-}
+
+           
+    
+   
+
+    
+  }
