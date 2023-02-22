@@ -358,20 +358,16 @@ document.getElementById('loader-wrapper2').classList.add('hidden');
 function SAVE() {
     document.getElementById('loader-wrapper').classList.remove('hidden');
     document.getElementById('loader-wrapper2').classList.add('visible');
-    
     const formData = new FormData();
     const photos = imagesArray;
-  
     const nameInput = document.querySelector('.name');
     const surnameInput = document.querySelector('.surname');
     const phoneInput = document.querySelector('.phone');
     const emailInput = document.querySelector('.email');
-  
     const name = nameInput.value;
     const surname = surnameInput.value;
     const phone = phoneInput.value;
     const email = emailInput.value;
-  
     formData.append('name', name);
     formData.append('surname', surname);
     formData.append('phone', phone);
@@ -389,22 +385,18 @@ function SAVE() {
           return photo;
         }
     });
-  
     for (let i = 0; i < newPhotos.length; i++) {
       formData.append('photos', newPhotos[i]);
     }
-  
     console.log(formData);
+    let amount = 0;
+    document.querySelectorAll('.card').forEach( el => {
+        let totalSize = el.querySelector('.size').dataset.price;
+        let totalCount = el.querySelector('.count_num');
 
-      let amount = 0;
-      document.querySelectorAll('.card').forEach( el => {
-          let totalSize = el.querySelector('.size').dataset.price;
-          let totalCount = el.querySelector('.count_num');
-          totalCount = totalCount.value;
-          amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
-      });
-      
-  
+        totalCount = totalCount.value;
+        amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
+    });
     fetch('http://127.0.0.1:1228/upload', {
         method: 'POST',
         mode: 'no-cors',
@@ -414,16 +406,9 @@ function SAVE() {
         console.log('Upload successful', response);
         document.getElementById('loader-wrapper2').classList.remove('visible');
         document.getElementById('loader-wrapper2').classList.add('hidden');
-        PAY(amount);
-        
+        PAY(amount); 
     })
     .catch(error => {
         console.error('Error uploading photos:', error);
     });
-
-           
-    
-   
-
-    
-  }
+}
