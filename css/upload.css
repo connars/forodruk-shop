@@ -136,7 +136,7 @@ ounter-box {
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
     width: 500px;
-    height: 100vh;
+    /* height: 100vh; */
     /* transform: translateX(100%); */
     display: flex;
     /* position: absolute; */
@@ -354,9 +354,9 @@ ounter-box {
         border: 0;
     }
 
-    .details__bottom p{
-        font-size: 20px;
-    }
+    /* .details__bottom p{
+        font-size: 10px;
+    } */
 }
 
 
@@ -515,8 +515,6 @@ input[type=number] {
 
 
 
-
-
 .upload__footer {
     display: flex;
     justify-content: space-between;
@@ -556,6 +554,60 @@ input[type=number] {
     visibility: hidden;
 }
 
+.info {
+    padding-top: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.info input {
+    border: 1px solid var(--green);
+    padding: 7px;
+    width: 248px;
+}
+
+
+
+#warehouses {
+    width: 248px;
+    padding: 5px;
+    max-height: 32px;
+    background-color: white;
+    border: 1px solid var(--green);
+
+    background-image: url(../img/icons/cheveron-right.svg);
+    background-repeat: no-repeat;
+    background-position: right 10px top 10px;
+    background-size: 12px;
+}
+
+
+.post {
+    padding-top: 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.post p{
+    font-size: 13px;
+    text-align: left;
+}
+
+.post input {
+    border: 1px solid var(--green);
+    padding: 7px;
+    width: 248px;
+}
+
+
 @media screen and (max-width: 1000px){
     .upload__main-sidebar {
         position: absolute;
@@ -564,7 +616,7 @@ input[type=number] {
         transform: translateY(-100%);
         z-index: 9999;
     }
-
+    
     .upload__main-sidebar.active {
         position: absolute;
         transform: translateY(0%);
@@ -573,6 +625,16 @@ input[type=number] {
 
     .upload__sidebar-nav {
         visibility: visible;
+
+        padding: 20px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .upload__sidebar-nav img{
+        width: 15px;
+        transform: rotate(90deg);
     }
     
 

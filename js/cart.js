@@ -118,6 +118,17 @@ accordionTitles.forEach(title => {
   title.addEventListener('click', () => {
     const item = title.parentElement;
     const content = item.querySelector('.sidebar__accordion-contant');
+    
+    // Снимаем активное состояние со всех элементов, кроме того, на который был клик
+    accordionTitles.forEach(otherTitle => {
+      const otherItem = otherTitle.parentElement;
+      if (otherItem !== item) {
+        otherItem.classList.remove('active');
+        otherItem.querySelector('.sidebar__accordion-contant').style.maxHeight = null;
+      }
+    });
+    
+    // Добавляем/снимаем активное состояние выбранному элементу
     if (item.classList.contains('active')) {
       item.classList.remove('active');
       content.style.maxHeight = null;
@@ -135,11 +146,16 @@ submitButton.addEventListener('click', (event) => {
   const nameInput = document.querySelector('.name');
   const surnameInput = document.querySelector('.surname');
   const phoneInput = document.querySelector('.phone');
+  const cityInput = document.querySelector('.surname');
+  const adressInput = document.querySelector('.phone');
 
-  if (!nameInput.value || !surnameInput.value || !phoneInput.value) {
+  if (  !nameInput.value || 
+        !surnameInput.value || 
+        !phoneInput.value || 
+        !cityInput.value || 
+        !adressInput.value) {
     alert('Пожалуйста, заполните все обязательные поля');
   } else {
-    
         SAVE()
     }
 });
@@ -158,7 +174,7 @@ function PAY(sum) {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'X-Token': 'u-Lz3ZxhSN0pc_tIxt_EfLjocKZLVnwk-9z5F-bampEE'
+          'X-Token': 'mFqcOT0IpvEpR77RxMRdHnw'
         },
         body: JSON.stringify({
           amount: sum,
@@ -172,9 +188,9 @@ function PAY(sum) {
       .then(response => response.json())
       .then(data => {
             if (data.hasOwnProperty('pageUrl')) {
-                window.location.replace(data.pageUrl);
+                window.open(data.pageUrl, '_blank');
             }
-      })
+        })
       .catch(error => console.error(error));   
 
 }
@@ -324,7 +340,6 @@ function sendForm() {
                 'Content-Type': 'application/json'
             }
         })
-    // .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error(error));
 
@@ -364,10 +379,17 @@ function SAVE() {
     const surnameInput = document.querySelector('.surname');
     const phoneInput = document.querySelector('.phone');
     const emailInput = document.querySelector('.email');
+
     const name = nameInput.value;
     const surname = surnameInput.value;
     const phone = phoneInput.value;
     const email = emailInput.value;
+
+    // город
+    // улица 
+    // отделение нп
+
+
     formData.append('name', name);
     formData.append('surname', surname);
     formData.append('phone', phone);
@@ -397,7 +419,7 @@ function SAVE() {
         totalCount = totalCount.value;
         amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
     });
-    fetch('http://127.0.0.1:1228/upload', {
+    fetch('https://fotka.in.ua/server/upload', {
         method: 'POST',
         mode: 'no-cors',
         body: formData,
@@ -412,3 +434,130 @@ function SAVE() {
         console.error('Error uploading photos:', error);
     });
 }
+
+
+function getAdress() {
+    const requestUrl = 'https://api.novaposhta.ua/v2.0/json/';
+        const apiKey = '65fa689752b60a1762ab7298895c6930';
+
+        const requestData = {
+        apiKey: apiKey,
+        modelName: 'Address',
+        calledMethod: 'searchSettlements',
+        methodProperties: {
+            CityName: 'Київ'
+        }
+        };
+
+        fetch(requestUrl, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const addresses = data.data[0].Addresses;
+                addresses.forEach(address => {
+                  console.log(address.Ref);
+                });
+              })
+            .catch(error => {
+                console.error(error);
+        });
+
+}
+
+const apiKey = '65fa689752b60a1762ab7298895c6930';
+const apiUrl = 'https://api.novaposhta.ua/v2.0/json/';
+
+const cityInput = document.getElementById('city');
+const warehousesSelect = document.getElementById('warehouses');
+
+const getWarehouses = async (city) => {
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        apiKey: apiKey,
+        modelName: 'AddressGeneral',
+        calledMethod: 'getWarehouses',
+        methodProperties: {
+          CityName: city,
+        },
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      warehousesSelect.innerHTML = '';
+      data.data.forEach((warehouse) => {
+        const option = document.createElement('option');
+        option.text = `${warehouse.Description}`;
+        option.value = warehouse.Ref;
+        warehousesSelect.appendChild(option);
+      });
+    } else {
+      console.log('Ошибка получения данных', data);
+    }
+  } catch (error) {
+    console.log('Ошибка запроса', error);
+  }
+};
+
+cityInput.addEventListener('input', () => {
+  getWarehouses(cityInput.value);
+});
+
+
+
+
+function sendToCrm() {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", "_csrf=BNvBf7yT0q3KOAkCWMBahVhaR8HR-1iA");
+
+    let requestOptions = {
+    method: "POST",
+    // mode: "no-cors",
+    headers: myHeaders,
+    body: JSON.stringify({
+        form: "DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp",
+        getResultData: "1",
+        fName: "имя",
+        lName: "фамилия",
+        phone: '32369213123', 
+        email: "почта",
+        products: [
+        {
+            id: "1",
+            name: "Носки",
+            costPerItem: "7",
+            amount: "7",
+            description: "Носки теплые",
+            discount: "27.02.2023",
+        },
+        ],
+        payment_method: "Карта",
+        shipping_method: "Почта",
+        shipping_address: "Узбекистан",
+    }),
+    // redirect: "follow",
+    };
+
+    fetch("https://fotka.salesdrive.me/handler/", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+  
+}
+
+
+
+//   Пиши npm start что бы запустить запрос

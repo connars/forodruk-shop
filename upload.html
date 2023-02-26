@@ -46,7 +46,7 @@
             <div class="header__wrapper">
                 <div class="header__left">
                     <a href="/">
-                        Фотодрук <span>online</span>
+                        <span>Fotka</span> in.ua
                     </a>
                 </div>
                 <div class="header__center">
@@ -92,7 +92,7 @@
 
                         </div>
                         <div class="upload__header-menu">
-                            <input class="openUploader" type="file" accept=".heic,image/*" multiple>
+                            <input class="openUploader" type="file" accept=".heic, image/*" multiple>
 
                             <button href="" class="main-btn upload-btn">
                                 Додати фото
@@ -195,91 +195,44 @@
                                         </div>
                                     </div>
                                     <div class="sidebar__accordion-contant">
-                                        <input class="name" type="text" placeholder="І'мя*">
-                                        <input class="surname" type="text" placeholder="Прізвище*">
-                                        <input class="phone" type="tel" placeholder="Телефон*">
-                                        <input class="email" type="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <!-- END -->
-                                <!-- START -->
-                                <div class="sidebar__accordion-item">
-                                    <div class="sidebar__accordion-title">
-                                        <div class="sidebar__accordion-number">
-                                            <span>
-                                                3
-                                            </span>
+                                        <div class="info">
+                                            <input class="name" type="text" placeholder="І'мя*">
+                                            <input class="surname" type="text" placeholder="Прізвище*">
+                                            <input class="phone" type="tel" placeholder="Телефон*">
+                                            <input class="email" type="email" placeholder="E-mail">
                                         </div>
-                                        <p>
-                                            Оплата та доставка
-                                        </p>
-                                        <div class="check">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 13L9 17L19 7" stroke="#111827" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
+                                        <div class="post">
+                                            <p>Адресса та відділеня Нової Пошти</p>
+                                            <input type="text" id="city" placeholder="Введіть місто*">
+                                            <select id="warehouses"></select>
                                         </div>
                                     </div>
-                                    <div class="sidebar__accordion-contant">
-                                        <div class="details">
-                                            <div class="details__top">
-                                                <p>
-                                                    Розмір
-                                                </p>
-                                                <p>
-                                                    Кількість
-                                                </p>
-                                                <p>
-                                                    Цінa
-                                                </p>
-                                            </div>
-                                            <div class="details__middle">
-                                                <p>
-                                                    10х10
-                                                </p>
-                                                <p>
-                                                    1
-                                                </p>
-                                                <p>
-                                                    1 грн
-                                                </p>
-                                            </div>
-                                            <div class="details__bottom">
-                                                <p>
-                                                    Всього
-                                                </p>
-                                                <p>
-                                                    1
-                                                </p>
-                                                <p>
-                                                    1 грн
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END -->
 
-                                <!-- START -->
+                                 
+                                </div>
+                                <!-- END -->
                                 <div class="sidebar__accordion-item sidebar__accordion-item-last">
                                     <button class="main-btn pay">
                                         До оплати
                                     </button>
 
                                 </div>
+
+                                <!-- START -->
+
                                 <!-- END -->
                             </form>
+                            <div class="upload__sidebar-nav">
+                                <img src="./img/icons/cheveron-right.svg" alt="">
+                                <button class="upload__sidebar-exit">
+                                    Назад
+                                </button>
+        
+                                <!-- <button class="main-btn" disabled>
+                                    Замовити
+                                </button> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="upload__sidebar-nav">
-                        <button class="upload__sidebar-exit">
-                            Назад
-                        </button>
-
-                        <button class="main-btn" disabled>
-                            Замовити
-                        </button>
                     </div>
                 </div>
             </div>
@@ -311,10 +264,16 @@
             <div class="editor__option editor__size">
                 <p>Розмір</p>
                 <select type="text" class="size__input">
-                    <option data-choseprice="10" value="10x10">10x10</option>
-                    <option data-choseprice="20" value="20x20">20x20</option>
-                    <option data-choseprice="30" value="30x30">30x30</option>
-                    <option data-choseprice="40" value="40x40">40x40</option>
+                    <option data-choseprice="5" value="10x10">9x13</option>
+                    <option data-choseprice="5" value="10x15">20x20</option>
+                    <option data-choseprice="10" value="30x30">30x30</option>
+                    <option data-choseprice="15" value="40x40">40x40</option>
+                    <option data-choseprice="35" value="10x10">10x10</option>
+                    <option data-choseprice="7" value="20x20">20x20</option>
+                    <option data-choseprice="7" value="30x30">30x30</option>
+                    <option data-choseprice="7" value="40x40">40x40</option>
+                    <option data-choseprice="7" value="20x20">20x20</option>
+                    <option data-choseprice="7" value="30x30">30x30</option>
                 </select>
             </div>
 
@@ -323,8 +282,8 @@
                 <select type="text" class="type__input">
                     <!-- <option value="Без полів">Без полів</option>
                     <option value="З полями">З полями</option> -->
-                    <option value="s-polyanmi">Без полів</option>
-                    <option value="bez-poliv">З полями</option>
+                    <option value="Без полів">Без полів</option>
+                    <option value="З полями">З полями</option>
                 </select>
             </div>
 
