@@ -525,7 +525,7 @@ function sendToCrm() {
 
     let requestOptions = {
     method: "POST",
-    // mode: "no-cors",
+    mode: "no-cors",
     headers: myHeaders,
     body: JSON.stringify({
         form: "DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp",
@@ -548,7 +548,7 @@ function sendToCrm() {
         shipping_method: "Почта",
         shipping_address: "Узбекистан",
     }),
-    // redirect: "follow",
+    redirect: "follow",
     };
 
     fetch("https://fotka.salesdrive.me/handler/", requestOptions)
