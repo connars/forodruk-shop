@@ -186,7 +186,7 @@ function PAY(sum) {
     body: JSON.stringify({
       amount: sum,
       ccy: 980,
-      redirectUrl: "https://example.com/your/website/result/page",
+      redirectUrl: "https://api.fotka.in.ua/get-info",
       webHookUrl:
         "https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily",
       validity: 3600,
