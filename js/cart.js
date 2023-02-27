@@ -186,7 +186,7 @@ function PAY(sum) {
     body: JSON.stringify({
       amount: sum,
       ccy: 980,
-      redirectUrl: "https://api.fotka.in.ua/get-info",
+      redirectUrl: "https://example.com/your/website/result/page",
       webHookUrl:
         "https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily",
       validity: 3600,
@@ -196,6 +196,7 @@ function PAY(sum) {
     .then((response) => response.json())
     .then((data) => {
       if (data.hasOwnProperty("pageUrl")) {
+        window.open(data.pageUrl, "_self");
       }
     })
     .catch((error) => console.error(error));
