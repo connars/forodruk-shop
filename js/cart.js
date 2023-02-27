@@ -187,10 +187,10 @@ function PAY(sum) {
       })
       .then(response => response.json())
       .then(data => {
-            if (data.hasOwnProperty('pageUrl')) {
-                window.open(data.pageUrl, '_blank');
-            }
-        })
+          if (data.hasOwnProperty('pageUrl')) {
+              window.open(data.pageUrl, '_self');
+          }
+      })
       .catch(error => console.error(error));   
 
 }
@@ -326,26 +326,6 @@ function clickCard() {
 }
 
 
-
-
-function sendForm() {
-        fetch('https://fotka.salesdrive.me/handler/', {
-            method: 'POST',
-            mode: 'no-cors',
-            body: {
-                form: 'DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp',
-                getResultData: '1',
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-
-}
-
-
 const nameInput = document.querySelector('.name');
 const surnameInput = document.querySelector('.surname');
 const phoneInput = document.querySelector('.phone');
@@ -371,7 +351,7 @@ togglePayButton();
 document.getElementById('loader-wrapper2').classList.add('hidden');
 
 function SAVE() {
-    document.getElementById('loader-wrapper').classList.remove('hidden');
+    document.getElementById('loader-wrapper2').classList.remove('hidden');
     document.getElementById('loader-wrapper2').classList.add('visible');
     const formData = new FormData();
     const photos = imagesArray;
@@ -379,17 +359,10 @@ function SAVE() {
     const surnameInput = document.querySelector('.surname');
     const phoneInput = document.querySelector('.phone');
     const emailInput = document.querySelector('.email');
-
     const name = nameInput.value;
     const surname = surnameInput.value;
     const phone = phoneInput.value;
     const email = emailInput.value;
-
-    // город
-    // улица 
-    // отделение нп
-
-
     formData.append('name', name);
     formData.append('surname', surname);
     formData.append('phone', phone);
@@ -419,16 +392,16 @@ function SAVE() {
         totalCount = totalCount.value;
         amount = amount + (parseInt( totalSize) * parseInt(totalCount)) * 100;
     });
-    fetch('https://fotka.in.ua/server/upload', {
+    fetch('https://api.fotka.in.ua/upload', {
         method: 'POST',
         mode: 'no-cors',
         body: formData,
     })
     .then(response => {
         console.log('Upload successful', response);
+        PAY(amount); 
         document.getElementById('loader-wrapper2').classList.remove('visible');
         document.getElementById('loader-wrapper2').classList.add('hidden');
-        PAY(amount); 
     })
     .catch(error => {
         console.error('Error uploading photos:', error);
@@ -516,48 +489,44 @@ cityInput.addEventListener('input', () => {
 });
 
 
+function addCrm() {
+
+  const formData2 = new FormData();
+
+  const nameInput = document.querySelector('.name');
+  const surnameInput = document.querySelector('.surname');
+  const phoneInput = document.querySelector('.phone');
+  const emailInput = document.querySelector('.email');
+
+  const name2 = nameInput.value;
+  const surname2 = surnameInput.value;
+  const phone2 = phoneInput.value;
+  const mail2 = emailInput.value;
+
+  const price = 132;
+  const delivery = 'Нова пошта';
+  const adress = 'Адрес';
 
 
-function sendToCrm() {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Cookie", "_csrf=BNvBf7yT0q3KOAkCWMBahVhaR8HR-1iA");
+  formData2.append('name', name2);
+  formData2.append('surname', surname2);
+  formData2.append('mail', mail2);
+  formData2.append('phone', phone2);
+  formData2.append('price', price);
+  formData2.append('delivery', delivery);
+  formData2.append('adress', adress);
 
-    let requestOptions = {
-    method: "POST",
-    mode: "no-cors",
-    headers: myHeaders,
-    body: JSON.stringify({
-        form: "DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp",
-        getResultData: "1",
-        fName: "имя",
-        lName: "фамилия",
-        phone: '32369213123', 
-        email: "почта",
-        products: [
-        {
-            id: "1",
-            name: "Носки",
-            costPerItem: "7",
-            amount: "7",
-            description: "Носки теплые",
-            discount: "27.02.2023",
-        },
-        ],
-        payment_method: "Карта",
-        shipping_method: "Почта",
-        shipping_address: "Узбекистан",
-    }),
-    redirect: "follow",
-    };
 
-    fetch("https://fotka.salesdrive.me/handler/", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
-  
+  console.log(formData2);
+  fetch('https://api.fotka.in.ua/crm-add', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData2,
+  })
+  .then(response => {
+
+  })
+  .catch(error => {
+      console.error('Error uploading photos:', error);
+  });
 }
-
-
-
-//   Пиши npm start что бы запустить запрос
