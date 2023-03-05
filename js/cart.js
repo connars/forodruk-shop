@@ -12,7 +12,10 @@ function addCard() {
       document.querySelector(".firstscreen").style.display = "none";
       for (var i = 0; i < files.length; i++) {
         imagesArray.push(files[i]);
-        CREATE(URL.createObjectURL(files[i]), files[i].name);
+        const fileExtension = files[i].name.split(".").pop();
+        const isHeic = fileExtension === "heic";
+        const imageUrl = isHeic ? "heic.png" : URL.createObjectURL(files[i]);
+        CREATE(imageUrl, files[i].name);
       }
       totalPrice();
       cartCount();
@@ -21,7 +24,6 @@ function addCard() {
   );
   reader.readAsDataURL(files[0]);
 }
-
 function CREATE(img, name) {
   let newDiv = document.createElement("div");
   newDiv.setAttribute("class", "card");
@@ -94,6 +96,7 @@ document.querySelector(".dublicate").addEventListener("click", () => {
     clickCard();
   });
 });
+
 
 // ------------ open sidebar --------------------
 let cart = document.querySelector(".upload__main-sidebar");
@@ -176,23 +179,23 @@ document.querySelectorAll(".upload-btn").forEach((uploadButton) => {
 });
 
 function PAY(sum) {
-  fetch("https://api.monobank.ua/api/merchant/invoice/create", {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Token": "mFqcOT0IpvEpR77RxMRdHnw",
-    },
-    body: JSON.stringify({
-      amount: sum,
-      ccy: 980,
-      redirectUrl: "https://api.fotka.in.ua/get-info",
-      webHookUrl:
-        "https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily",
-      validity: 3600,
-      paymentType: "debit",
-    }),
-  })
+    fetch("https://api.monobank.ua/api/merchant/invoice/create", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Token": "mFqcOT0IpvEpR77RxMRdHnw",
+      },
+      body: JSON.stringify({
+        amount: sum,
+        ccy: 980,
+        redirectUrl: "https://api.fotka.in.ua/get-info",
+        webHookUrl:
+          "https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily",
+        validity: 3600,
+        paymentType: "debit",
+      }),
+    })
     .then((response) => response.json())
     .then((data) => {
       if (data.hasOwnProperty("pageUrl")) {
@@ -404,7 +407,7 @@ function SAVE() {
     totalCount = totalCount.value;
     amount = amount + parseInt(totalSize) * parseInt(totalCount) * 100;
   });
-  fetch("https://api.fotka.in.ua/upload", {
+  fetch("http://127.0.0.1:3002/upload", {
     method: "POST",
     mode: "no-cors",
     body: formData,
@@ -420,56 +423,93 @@ function SAVE() {
     });
 }
 
-function getAdress() {
-  const requestUrl = "https://api.novaposhta.ua/v2.0/json/";
-  const apiKey = "65fa689752b60a1762ab7298895c6930";
 
-  const requestData = {
-    apiKey: apiKey,
-    modelName: "Address",
-    calledMethod: "searchSettlements",
-    methodProperties: {
-      CityName: "Київ",
-    },
-  };
 
-  fetch(requestUrl, {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestData),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const addresses = data.data[0].Addresses;
-      addresses.forEach((address) => {
-        console.log(address.Ref);
-      });
-    })
-    .catch((error) => {
-      console.error(error);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const apiKey = '65fa689752b60a1762ab7298895c6930';
+const apiUrl = 'https://api.novaposhta.ua/v2.0/json/';
+
+const cityInput = document.getElementById('city');
+const warehousesSelect = document.getElementById('warehouses');
+
+const getCities = async (search) => {
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        apiKey: apiKey,
+        modelName: 'Address',
+        calledMethod: 'getCities',
+        methodProperties: {
+          FindByString: search,
+        },
+      }),
     });
-}
 
-const apiKey = "65fa689752b60a1762ab7298895c6930";
-const apiUrl = "https://api.novaposhta.ua/v2.0/json/";
+    const data = await response.json();
 
-const cityInput = document.getElementById("city");
-const warehousesSelect = document.getElementById("warehouses");
+    if (data.success) {
+      const cities = data.data.map((city) => city.Description);
+      updateCitiesList(cities);
+    } else {
+      console.log('Ошибка получения данных', data);
+    }
+  } catch (error) {
+    console.log('Ошибка запроса', error);
+  }
+};
+
+const updateCitiesList = (cities) => {
+  const datalist = document.getElementById('cities');
+  datalist.innerHTML = '';
+  cities.forEach((city) => {
+    const option = document.createElement('option');
+    option.value = city;
+    datalist.appendChild(option);
+  });
+};
+
+cityInput.addEventListener('input', () => {
+  getCities(cityInput.value);
+});
+
+
+cityInput.addEventListener('change', (event) => {
+  const selectedCity = event.target.value;
+  if (selectedCity) {
+    getWarehouses(selectedCity);
+  }
+});
 
 const getWarehouses = async (city) => {
   try {
     const response = await fetch(apiUrl, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json;charset=utf-8",
+        'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
         apiKey: apiKey,
-        modelName: "AddressGeneral",
-        calledMethod: "getWarehouses",
+        modelName: 'AddressGeneral',
+        calledMethod: 'getWarehouses',
         methodProperties: {
           CityName: city,
         },
@@ -479,24 +519,40 @@ const getWarehouses = async (city) => {
     const data = await response.json();
 
     if (data.success) {
-      warehousesSelect.innerHTML = "";
+      warehousesSelect.innerHTML = '';
       data.data.forEach((warehouse) => {
-        const option = document.createElement("option");
+        const option = document.createElement('option');
         option.text = `${warehouse.Description}`;
         option.value = warehouse.Ref;
         warehousesSelect.appendChild(option);
       });
     } else {
-      console.log("Ошибка получения данных", data);
+      console.log('Ошибка получения данных', data);
     }
   } catch (error) {
-    console.log("Ошибка запроса", error);
+    console.log('Ошибка запроса', error);
   }
 };
 
-cityInput.addEventListener("input", () => {
+cityInput.addEventListener('input', () => {
   getWarehouses(cityInput.value);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function addCrm() {
   const nameInput = document.querySelector(".name");
