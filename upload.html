@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Фотодрук онлайн</title>
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
 
     <link rel="stylesheet" href="./css/setting.css" />
     <link rel="stylesheet" href="./css/reset.css" />
@@ -382,6 +382,25 @@
         let preloader = document.getElementById("loader-wrapper");
         preloader.classList.add("hidden"), 400;
       };
+
+      function confirmClose() {
+        var confirmed = confirm("Хотите закрыть сайт?");
+        if (confirmed) {
+          window.close();
+        }
+      }
+
+      window.addEventListener("beforeunload", function(event) {
+        var confirmed = confirm("Хотите закрыть сайт?");
+        if (confirmed) {
+          // Оставляем страницу закрываться
+        } else {
+          // Отменяем событие закрытия
+          event.preventDefault();
+        }
+      });
+
+      window.addEventListener("beforeunload", confirmClose);
     </script>
     <script src="./js/cart.js"></script>
   </body>

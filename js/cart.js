@@ -17,6 +17,7 @@ function addCard() {
         const imageUrl = isHeic ? "heic.png" : URL.createObjectURL(files[i]);
         CREATE(imageUrl, files[i].name);
       }
+      checkPhotoCount()
       totalPrice();
       cartCount();
     },
@@ -24,6 +25,17 @@ function addCard() {
   );
   reader.readAsDataURL(files[0]);
 }
+
+
+function checkPhotoCount() {
+  if (imagesArray.length > 500) {
+    alert("Количество фотографий превышает 500!");
+  } else {
+    console.log(imagesArray.length);
+  }
+}
+
+
 function CREATE(img, name) {
   let newDiv = document.createElement("div");
   newDiv.setAttribute("class", "card");
@@ -75,6 +87,8 @@ document.querySelector(".trash").addEventListener("click", () => {
     totalPrice();
     cartCount();
     clickCard();
+    checkPhotoCount()
+    console.log(imagesArray);
   });
 });
 
@@ -86,16 +100,45 @@ function removeFileFromImagesArray(filename) {
   console.log(imagesArray);
 }
 
-// COPY CARD
 document.querySelector(".dublicate").addEventListener("click", () => {
   document.querySelectorAll(".card.active").forEach((activecard) => {
-    let copyElems = activecard.cloneNode(true);
-    imgcontainer.appendChild(copyElems);
+    // let copyElems = activecard.cloneNode(true);
+    // imgcontainer.appendChild(copyElems);
     totalPrice();
     cartCount();
     clickCard();
+    checkPhotoCount()
+    console.log(imagesArray);
+    copyFileToImagesArray()
   });
 });
+
+function copyFileToImagesArray() {
+  // Находим активный элемент (карточку)
+  const activecard = document.querySelector(".card.active");
+  
+  // Клонируем его
+  const copyElems = activecard.cloneNode(true);
+  
+  // Изменяем имя файла в атрибуте data-filename
+  const filename = copyElems.getAttribute("data-filename");
+  const newFilename = filename + "_" + imagesArray.length;
+  copyElems.setAttribute("data-filename", newFilename);
+  
+  // Добавляем копию элемента в массив
+  imagesArray.push({ name: newFilename });
+  
+  // Добавляем копию элемента в контейнер
+  imgcontainer.appendChild(copyElems);
+  
+  // Вызываем другие функции
+  totalPrice();
+  cartCount();
+  clickCard();
+  checkPhotoCount();
+  
+  console.log(imagesArray);
+}
 
 
 // ------------ open sidebar --------------------
