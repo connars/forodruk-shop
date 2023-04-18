@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
+    <script src="https://cdn.jsdelivr.net/npm/imask"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
@@ -41,7 +41,7 @@
     ></script>
   </head>
 
-  <body>
+  <body id="dropzone">
     <div id="loader-wrapper" class="loader-wrapper">
       <div class="load-container">
         <div class="linespinner"></div>
@@ -66,7 +66,11 @@
           <div class="header__left">
             <a href="/"> <span>Fotka</span> in.ua </a>
           </div>
-          <div class="header__center"></div>
+          <div class="header__center">
+            <p style="font-weight: 900">
+              <strong>Максимальна кількість фото - 500шт(2ГБ)</strong> 
+            </p>  
+          </div>
           <div class="header__right">
             <a href="index.html">
               <button class="main-btn">На головну</button>
@@ -83,13 +87,47 @@
     </div>
     <hr class="header__line" />
     <div class="firstscreen">
-      <div class="firstscreen__wrapper">
-        <h4>Додайте своє перше фото</h4>
-        <p>
-          Формати які ми приймаємо :<br />
-          .jpg .jpeg .png .heic .html .cr2 .raw .nef
-        </p>
-        <button class="upload-btn main-btn">Завантажити</button>
+      <div class="firstscreen__wrapper container">
+        
+        <h4>Інструкція</h4>  
+
+        <div class="firstscreen__wrapper-contant">
+
+          <div class="firstscreen__wrapper-left">
+            <p>
+              1) Додайте фото, котрі бажаєте роздрукувати
+            </p>
+            <p>
+              2)Виділіть фото (одразу усі або окремі фото)  та оберіть параментри:
+              <ul class="firstscreen__list">
+                <li>- Формат (10х15, полароїд, квадрат)</li>
+                <li>- Без полів чи з рамкою-полями</li>
+                <li>- тип фотопаперу (глянцевий чи матовий)</li>
+                <li>- кількість копій</li>
+              </ul>
+            </p>
+            <p>
+              3) Заповніть дані для доствки Новою поштою та оплатіть замовлення. Уважно заповнюйте, адже по даним реквізитам буде відправлено ваші фото!!!
+            </p>
+            <p style="font-weight: 900">
+              <strong>УВАГА! Якщо кадр не поміщається в обраний формат, фото друкується з додатковими полями</strong> 
+            </p>
+          </div>
+          <div class="firstscreen__wrapper-right">          
+            <img src="./img/demo.png" alt="">
+          </div>
+        </div>
+        
+
+        <div class="firstscreen__bottom">
+          <div>
+            <input id="c1" type="checkbox">
+            <label for="c1">Ознайомленный</label>
+          </div>
+          
+          <button class="upload-btn main-btn disabled" disabled>Завантажити</button>
+        </div>
+
       </div>
     </div>
     <div class="upload__container">
@@ -107,10 +145,15 @@
                   accept=".heic, image/*"
                   multiple
                 />
-
+                
+                <button href="" class="main-btn check-all">Обрати всі фото</button>
                 <button href="" class="main-btn upload-btn">Додати фото</button>
               </div>
+              <p class="attention" style="font-weight: 900">
+                <strong>Максимальна кількість фото - 500шт(2ГБ)</strong> 
+              </p>
             </div>
+
             <div class="cards">
               <!-- <div class="card">
                             <span data-price="10" class="card__options size">
@@ -175,6 +218,13 @@
                     </div>
                     <div class="sidebar__accordion-contant">
                       <div class="details">
+                        <div id="sizes-table">
+                          <table>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
                         <div class="details__bottom">
                           <p>Всього</p>
                           <p><span class="allcount"></span> шт</p>
@@ -216,11 +266,13 @@
                           class="surname"
                           type="text"
                           placeholder="Прізвище*"
+                          required
                         />
                         <input
                           class="phone"
                           type="tel"
                           placeholder="Телефон*"
+                          required
                         />
                         <input
                           class="email"
@@ -231,7 +283,7 @@
                       <div class="post">
                         <p>Адресса та відділеня Нової Пошти</p>
 
-                        <input type="text" id="city" name="city" list="cities">
+                        <input type="text" id="city" name="city" list="cities" placeholder="Місто*" required>
                         <datalist id="cities"></datalist>
 
                         <select id="warehouses"></select>
@@ -242,21 +294,21 @@
                   <div
                     class="sidebar__accordion-item sidebar__accordion-item-last"
                   >
-                    <button class="main-btn pay">До оплати</button>
+                    <button class="main-btn pay">Далі</button>
                   </div>
-
+                  <div class="upload__sidebar-nav">
+                    <img src="./img/icons/cheveron-right.svg" alt="" />
+                    <a href="javascript:void(0)" class="upload__sidebar-exit" disabled>Назад</a>
+  
+                    <!-- <button class="main-btn" disabled>
+                                      Замовити
+                                  </button> -->
+                  </div>
                   <!-- START -->
 
                   <!-- END -->
                 </form>
-                <div class="upload__sidebar-nav">
-                  <img src="./img/icons/cheveron-right.svg" alt="" />
-                  <button class="upload__sidebar-exit">Назад</button>
 
-                  <!-- <button class="main-btn" disabled>
-                                    Замовити
-                                </button> -->
-                </div>
               </div>
             </div>
           </div>
@@ -267,7 +319,7 @@
       <div class="container">
         <div class="upload__footer-stat">
           <div class="sum-m">Всьго : <span class="allcount">0</span> шт</div>
-          <div class="sum-m">Сумма <span class="totalprice">0</span> грн</div>
+          <div class="sum-m">Сумма : <span class="totalprice">0</span> грн</div>
         </div>
         <div class="upload__footer-button">
           <button class="main-btn footer-button">Продовжити оформлення</button>
@@ -281,16 +333,17 @@
         <div class="editor__option editor__size">
           <p>Розмір</p>
           <select type="text" class="size__input">
-            <option data-choseprice="5" value="10x10">9x13</option>
-            <option data-choseprice="5" value="10x15">20x20</option>
-            <option data-choseprice="10" value="30x30">30x30</option>
-            <option data-choseprice="15" value="40x40">40x40</option>
-            <option data-choseprice="35" value="10x10">10x10</option>
-            <option data-choseprice="7" value="20x20">20x20</option>
-            <option data-choseprice="7" value="30x30">30x30</option>
-            <option data-choseprice="7" value="40x40">40x40</option>
-            <option data-choseprice="7" value="20x20">20x20</option>
-            <option data-choseprice="7" value="30x30">30x30</option>
+            <option data-choseprice="4" value="9x13">9x13</option>
+            <option data-choseprice="4.5" value="10x15">10x15</option>
+            <option data-choseprice="10" value="13x18">13x18</option>
+            <option data-choseprice="15" value="15x21">15x21</option>
+            <option data-choseprice="30" value="21x30">21x30</option>
+
+            <option data-choseprice="5" value="8x10">8x10</option>
+            <option data-choseprice="5" value="Полароїд-стандарт">Полароїд-стандарт</option>
+            <option data-choseprice="5" value="Полароїд-міні">Полароїд-міні </option>
+            <option data-choseprice="5" value="Квадрат 9x9">Квадрат 9x9</option>
+            <option data-choseprice="5" value="Квадрат 10x10">Квадрат 10x10</option>
           </select>
         </div>
 
@@ -299,8 +352,8 @@
           <select type="text" class="type__input">
             <!-- <option value="Без полів">Без полів</option>
                     <option value="З полями">З полями</option> -->
-            <option value="Без полів">Без полів</option>
             <option value="З полями">З полями</option>
+            <option value="Без полів">Без полів</option>
           </select>
         </div>
 
@@ -361,8 +414,8 @@
     </div>
 
     <div id="result"></div>
-
-    <script
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- <script
       src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.3/heic2any.min.js"
       integrity="sha512-/WKQk6ZoCxDcTEavvdHQJKucCb39gRwV325cm9oDlInehCe6kI71RqYP5hWyQRvzdgqKcZErH5baSs2TRPTRfQ=="
       crossorigin="anonymous"
@@ -374,7 +427,7 @@
       integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    ></script>
+    ></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./js/main.js"></script>
     <script>
@@ -383,24 +436,29 @@
         preloader.classList.add("hidden"), 400;
       };
 
-      function confirmClose() {
-        var confirmed = confirm("Хотите закрыть сайт?");
-        if (confirmed) {
-          window.close();
-        }
-      }
 
-      window.addEventListener("beforeunload", function(event) {
-        var confirmed = confirm("Хотите закрыть сайт?");
-        if (confirmed) {
-          // Оставляем страницу закрываться
-        } else {
-          // Отменяем событие закрытия
-          event.preventDefault();
-        }
-      });
 
-      window.addEventListener("beforeunload", confirmClose);
+      // window.addEventListener("beforeunload", function(event) {
+      //   var confirmed = confirm("Хотите закрыть сайт?");
+      //   if (confirmed) {
+      //     // Оставляем страницу закрываться
+      //   } else {
+      //     // Отменяем событие закрытия
+      //     event.preventDefault();
+      //   }
+      // });
+
+      // function confirmExit() {
+      //   return "Хотите закрыть сайт?";
+      // }
+
+      // window.addEventListener("beforeunload", function(event) {
+      //   event.returnValue = confirmExit();
+      // });
+
+      // window.addEventListener("unload", function(event) {
+      //   event.returnValue = confirmExit();
+      // });
     </script>
     <script src="./js/cart.js"></script>
   </body>

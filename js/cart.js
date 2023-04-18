@@ -12,12 +12,11 @@ function addCard() {
       document.querySelector(".firstscreen").style.display = "none";
       for (var i = 0; i < files.length; i++) {
         imagesArray.push(files[i]);
-        const fileExtension = files[i].name.split(".").pop();
-        const isHeic = fileExtension === "heic";
-        const imageUrl = isHeic ? "heic.png" : URL.createObjectURL(files[i]);
+        const fileExtension = files[i].name.split(".").pop().toLowerCase();
+        const imageUrl = fileExtension === "heic" ? "heic.png" : URL.createObjectURL(files[i]);
         CREATE(imageUrl, files[i].name);
       }
-      checkPhotoCount()
+      checkPhotoCount();
       totalPrice();
       cartCount();
     },
@@ -26,15 +25,15 @@ function addCard() {
   reader.readAsDataURL(files[0]);
 }
 
-
 function checkPhotoCount() {
   if (imagesArray.length > 500) {
-    alert("Количество фотографий превышает 500!");
-  } else {
-    console.log(imagesArray.length);
+    alert("Кількість фотографій перевищує 500!");
+    imagesArray.splice(500);
+    return;
   }
+  
+  console.log(imagesArray.length);
 }
-
 
 function CREATE(img, name) {
   let newDiv = document.createElement("div");
@@ -44,13 +43,14 @@ function CREATE(img, name) {
   newDiv.style.backgroundSize = "cover";
   // CREATE PRICE
   let pricespan = document.createElement("span");
-  pricespan.setAttribute("data-price", "10");
+  pricespan.setAttribute("data-price", "4");
   pricespan.setAttribute("class", "card__options size");
-  pricespan.innerHTML = "10x10";
+  pricespan.innerHTML = "9x13";
   // CREATE TYPE
   let typespan = document.createElement("span");
   typespan.setAttribute("class", "card__options type");
-  typespan.innerHTML = "Без полів";
+  typespan.setAttribute("data-type", "1");
+  typespan.innerHTML = "З полями";
   // CREATE MATHERIAL
   let mathspan = document.createElement("span");
   mathspan.setAttribute("class", "card__options matherial");
@@ -58,15 +58,15 @@ function CREATE(img, name) {
   // CREATE COUNT
   let countspan = document.createElement("span");
   let countinput = document.createElement("input");
-  let text = document.createElement("span");
+  // let text = document.createElement("span");
   countspan.setAttribute("class", "card__options countc");
   countinput.setAttribute("type", "number");
   countinput.setAttribute("class", "count_num");
   countinput.setAttribute("value", "1");
-  text.innerHTML = "шт";
+  // text.innerHTML = "шт";
 
   countspan.appendChild(countinput);
-  countspan.appendChild(text);
+  // countspan.appendChild(text);
   // ADD CARD SETTINGS
   newDiv.appendChild(pricespan);
   newDiv.appendChild(typespan);
@@ -77,6 +77,19 @@ function CREATE(img, name) {
 }
 
 input.addEventListener("change", addCard);
+
+// ВЫБРАТЬ ВСЕ ФОТО
+document.querySelector('.check-all').addEventListener('click', () => {
+  document.querySelectorAll('.card').forEach(card => {
+    if ( card.classList.contains('active')) {
+      card.classList.remove('active');
+    } else {
+      card.classList.add('active');
+    }
+    clickCard();
+  })
+})
+
 
 // DELETE CARD
 document.querySelector(".trash").addEventListener("click", () => {
@@ -91,7 +104,6 @@ document.querySelector(".trash").addEventListener("click", () => {
     console.log(imagesArray);
   });
 });
-
 function removeFileFromImagesArray(filename) {
   const index = imagesArray.findIndex((file) => file.name === filename);
   if (index !== -1) {
@@ -99,7 +111,7 @@ function removeFileFromImagesArray(filename) {
   }
   console.log(imagesArray);
 }
-
+// COPY CARD
 document.querySelector(".dublicate").addEventListener("click", () => {
   document.querySelectorAll(".card.active").forEach((activecard) => {
     // let copyElems = activecard.cloneNode(true);
@@ -114,29 +126,17 @@ document.querySelector(".dublicate").addEventListener("click", () => {
 });
 
 function copyFileToImagesArray() {
-  // Находим активный элемент (карточку)
   const activecard = document.querySelector(".card.active");
-  
-  // Клонируем его
   const copyElems = activecard.cloneNode(true);
-  
-  // Изменяем имя файла в атрибуте data-filename
   const filename = copyElems.getAttribute("data-filename");
-  const newFilename = filename + "_" + imagesArray.length;
+  const newFilename = imagesArray.length +  "_(копия фото)"  + filename;
   copyElems.setAttribute("data-filename", newFilename);
-  
-  // Добавляем копию элемента в массив
   imagesArray.push({ name: newFilename });
-  
-  // Добавляем копию элемента в контейнер
   imgcontainer.appendChild(copyElems);
-  
-  // Вызываем другие функции
   totalPrice();
   cartCount();
   clickCard();
   checkPhotoCount();
-  
   console.log(imagesArray);
 }
 
@@ -198,7 +198,7 @@ submitButton.addEventListener("click", (event) => {
   const surnameInput = document.querySelector(".surname");
   const phoneInput = document.querySelector(".phone");
   const cityInput = document.querySelector(".surname");
-  const adressInput = document.querySelector(".phone");
+  const adressInput = document.querySelector("#warehouses");
 
   if (
     !nameInput.value ||
@@ -209,7 +209,7 @@ submitButton.addEventListener("click", (event) => {
   ) {
     alert("Пожалуйста, заполните все обязательные поля");
   } else {
-    addCrm();
+    // addCrm();
     SAVE();
   }
 });
@@ -222,30 +222,59 @@ document.querySelectorAll(".upload-btn").forEach((uploadButton) => {
 });
 
 function PAY(sum) {
+
+    sum.toFixed(2)
+    const phone = document.querySelector(".phone").value;
+
     fetch("https://api.monobank.ua/api/merchant/invoice/create", {
       method: "POST",
-      mode: "cors",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         "X-Token": "mFqcOT0IpvEpR77RxMRdHnw",
       },
       body: JSON.stringify({
+        // amount: sum,
         amount: sum,
         ccy: 980,
-        redirectUrl: "https://api.fotka.in.ua/get-info",
-        webHookUrl:
-          "https://example.com/mono/acquiring/webhook/maybesomegibberishuniquestringbutnotnecessarily",
+        redirectUrl: "http://fotka.in.ua/thanks.html",
+        webHookUrl: `http://api.fotka.in.ua/webhook?phone=${phone}`,
         validity: 3600,
         paymentType: "debit",
       }),
     })
     .then((response) => response.json())
     .then((data) => {
-      if (data.hasOwnProperty("pageUrl")) {
-        window.open(data.pageUrl, "_self");
-      }
+        if (data.hasOwnProperty("pageUrl")) {
+            window.open(data.pageUrl, "_self");
+        }   
+      // const invoiceId = data.invoiceId;
+   
+      // let url = `http://localhost:3002/get-info?invoiceId=${invoiceId}&number=${phoneInput}`
+
+      // fetch(url)
+      // .then(response => {
+      //   if (response.ok) {
+
+  
+
+      //     return response.json();
+      //   } else {
+      //     throw new Error('Ошибка при запросе к серверу');
+      //   }
+      // })
+      // .then(data => {
+      //   console.log(data); // обработка полученных данных
+      // })
+      // .catch(error => console.error(error));
     })
     .catch((error) => console.error(error));
+
+    console.log(phoneInput);
+}
+
+function test() {
+
 }
 
 // -------------- choosing cards and all listeners ---------------
@@ -262,10 +291,14 @@ document.querySelector(".cards").addEventListener("click", (e) => {
 function changeSize() {
   document.querySelectorAll(".card.active").forEach((activecard) => {
     let currentSize = document.querySelector(".size__input");
+
+    const selectedOption = currentSize.options[currentSize.selectedIndex];
+    const selectedOptionPrice = selectedOption.getAttribute("data-choseprice");
+
     console.log(currentSize.value);
     activecard.querySelector(".size").innerHTML = `${currentSize.value}`;
-    activecard.querySelector(".size").dataset.price = currentSize.value;
-
+    activecard.querySelector(".size").dataset.price = selectedOptionPrice;
+    console.log(selectedOptionPrice);
     totalPrice();
   });
 }
@@ -277,6 +310,17 @@ document.querySelector(".size__input").addEventListener("change", changeSize);
 function changeType() {
   document.querySelectorAll(".card.active").forEach((activecard) => {
     let currentSize = document.querySelector(".type__input");
+    if (currentSize.value === "Без полів") {
+      activecard.classList.add('type-one')
+      activecard.classList.remove('type-two')
+      console.log(1);
+    } else if (currentSize.value === "З полями") {
+      // activecard.style.backgroundSize = "contain !important";
+      activecard.classList.add('type-two')
+      activecard.classList.remove('type-one')
+      console.log(2);
+    }
+
     activecard.querySelector(".type").innerHTML = `${currentSize.value}`;
   });
 }
@@ -302,7 +346,7 @@ document
 function plusCount() {
   document.querySelectorAll(".card.active").forEach((activecard) => {
     let cardVal = activecard.querySelector(".count_num");
-    cardVal.value++;
+    cardVal = cardVal.value++;
     cardVal.innerHTML = `${cardVal}`;
     // console.log(cardVal.value);
 
@@ -310,7 +354,6 @@ function plusCount() {
       cardVal.value = 1;
       // console.log(cardVal.value);
     }
-
     cartCount();
     totalPrice();
   });
@@ -322,6 +365,7 @@ function minusCount() {
     cardVal.value--;
     cardVal.innerHTML = `${cardVal}`;
     // console.log(cardVal.value);
+    
 
     if (cardVal.value < 1) {
       cardVal.value = 1;
@@ -351,21 +395,94 @@ function cartCount() {
 
 cartCount();
 
+let globalPrice = 0;
+
 function totalPrice() {
   let sum = 0;
-
+  renderTable()
   document.querySelectorAll(".card").forEach((el) => {
     let totalSize = el.querySelector(".size").dataset.price;
     let totalCount = el.querySelector(".count_num");
     totalCount = totalCount.value;
-    sum = sum + parseInt(totalSize) * parseInt(totalCount);
+    sum = sum + parseFloat(totalSize) * parseInt(totalCount);
+
+    globalPrice = sum;
     document.querySelectorAll(".totalprice").forEach((price_el) => {
-      price_el.innerHTML = `${sum}`;
+      price_el.innerHTML = `${sum.toFixed(2)}`;
     });
   });
 }
 
 totalPrice();
+
+
+// =================================== ПОДИТОГ КОРЗИНЫ =====================
+var orderInfo = 'none';
+
+function countSizes() {
+  const sizes = document.querySelectorAll('.card .size');
+
+  const counts = [];
+  const info = [];
+
+  sizes.forEach(size => {
+    const text = size.textContent.trim();
+    const count = size.closest('.card').querySelector('.count_num').value;
+    const price = size.getAttribute('data-price');
+    const match = counts.find(c => c.size === text);
+
+    if (match) {
+      match.count += Number(count);
+    } else {
+      counts.push({ size: text, count: Number(count), price });
+    }
+
+    // info.push(`${text} - ${counts.find(c => c.size === text)?.count}шт`);
+  });
+  
+  info.push(...counts.map(({ size, count }) => `${size} - ${count}шт`));
+
+  if(info !== '') {
+    orderInfo = info.join(', ');
+    console.log(orderInfo);
+  }
+  
+
+  return counts;
+}
+
+
+function renderTable() {
+  const counts = countSizes();
+  const table = document.querySelector('#sizes-table');
+  const tbody = table.querySelector('tbody');
+  tbody.innerHTML = '';
+  
+  counts.forEach(count => {
+    const row = document.createElement('tr');
+    const sizeCell = document.createElement('td');
+    sizeCell.textContent = count.size;
+    sizeCell.setAttribute('data-price', count.price);
+    const countCell = document.createElement('td');
+    countCell.textContent = count.count + ' шт';
+    const priceCell = document.createElement('td');
+    priceCell.textContent = (count.count * parseFloat(count.price)).toFixed(2) + ' грн';
+    row.appendChild(sizeCell);
+    row.appendChild(countCell);
+    row.appendChild(priceCell);
+    tbody.appendChild(row);
+  });
+}
+
+renderTable();
+
+
+
+function getOrderInfo() {
+  console.log(orderInfo);
+}
+
+// ========================================================================
 
 function clickCard() {
   let cards = document.querySelectorAll(".card.active");
@@ -388,8 +505,7 @@ function togglePayButton() {
   if (
     nameInput.value &&
     surnameInput.value &&
-    phoneInput.value &&
-    emailInput.value
+    phoneInput.value 
   ) {
     payButton.removeAttribute("disabled");
   } else {
@@ -405,6 +521,8 @@ emailInput.addEventListener("input", togglePayButton);
 togglePayButton();
 
 document.getElementById("loader-wrapper2").classList.add("hidden");
+
+// ===================== Отправка данных на сервер ============================
 
 function SAVE() {
   document.getElementById("loader-wrapper2").classList.remove("hidden");
@@ -427,10 +545,10 @@ function SAVE() {
   const newPhotos = photos.map((photo) => {
     const card = document.querySelector(`[data-filename="${photo.name}"]`);
     if (card) {
-      const price = card.querySelector(".size").dataset.price;
+      const count = card.querySelector(".count_num").value;
       const newName = `${transliterate(
         card.innerText.trim().replace(/[\s\n]+/g, "_")
-      )}_${price}_${transliterate(photo.name).replace(/\s+/g, "_")}`;
+      )}_Kolichestvo(${count})_${transliterate(photo.name).replace(/\s+/g, "_")}`;
       photo.name = newName;
       console.log(newName);
       return new File([photo], newName);
@@ -450,14 +568,20 @@ function SAVE() {
     totalCount = totalCount.value;
     amount = amount + parseInt(totalSize) * parseInt(totalCount) * 100;
   });
-  fetch("http://127.0.0.1:3002/upload", {
+  fetch("http://api.fotka.in.ua/upload", {
     method: "POST",
     mode: "no-cors",
     body: formData,
   })
     .then((response) => {
       console.log("Upload successful", response);
+      addCrm()
+      function test() {
+        console.log(amount);
+      }
+
       PAY(amount);
+      
       document.getElementById("loader-wrapper2").classList.remove("visible");
       document.getElementById("loader-wrapper2").classList.add("hidden");
     })
@@ -467,22 +591,7 @@ function SAVE() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ===================== Получение отделений новой почты ============================
 
 const apiKey = '65fa689752b60a1762ab7298895c6930';
 const apiUrl = 'https://api.novaposhta.ua/v2.0/json/';
@@ -542,6 +651,9 @@ cityInput.addEventListener('change', (event) => {
   }
 });
 
+let adressNp = '';
+
+
 const getWarehouses = async (city) => {
   try {
     const response = await fetch(apiUrl, {
@@ -568,6 +680,7 @@ const getWarehouses = async (city) => {
         option.text = `${warehouse.Description}`;
         option.value = warehouse.Ref;
         warehousesSelect.appendChild(option);
+        adressNp = warehouse.Ref;
       });
     } else {
       console.log('Ошибка получения данных', data);
@@ -575,29 +688,17 @@ const getWarehouses = async (city) => {
   } catch (error) {
     console.log('Ошибка запроса', error);
   }
+
+  console.log(adressNp);
 };
 
 cityInput.addEventListener('input', () => {
   getWarehouses(cityInput.value);
 });
 
+// ===================== Отправка данных в срм ============================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function addCrm() {
+function addCrm() {
   const nameInput = document.querySelector(".name");
   const surnameInput = document.querySelector(".surname");
   const phoneInput = document.querySelector(".phone");
@@ -605,38 +706,91 @@ async function addCrm() {
 
   const name2 = nameInput.value;
   const surname2 = surnameInput.value;
-  const phone2 = phoneInput.value;
+  const phone2 = phoneInput.value.replace(/[\s-+()]/g, '');
+  console.log(phone2);
   const mail2 = emailInput.value;
 
-  const price = 132;
-  const delivery = "Нова пошта";
-  const adress = "Адрес";
+  const data = new FormData();
+  data.append("getResultData", "0");
+  data.append("form", "DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp");
+  data.append("fName",  name2);
+  data.append("lName", surname2);
+  data.append("phone", phone2);
+  data.append("email", mail2);
+  // data.append("con_comment", orderInfo);
+  data.append("products[0][id]", "1");
+  data.append("products[0][costPerItem]", globalPrice);
+  data.append("products[0][amount]", "1");
+  data.append("products[0][description]", orderInfo);
+  data.append("payment_status", "paid");
+  data.append("shipping_method", "id_9");
+  // data.append("shipping_address", "ул. Пушкина, д.10");
+  data.append("novaposhta[ServiceType]", "WarehouseWarehouse");
+  data.append("novaposhta[payer]", "recipient");
+  // data.append("novaposhta[area]", "Киевская");
+  // data.append("novaposhta[region]", "Киевский");
+  // data.append("novaposhta[city]", "Киев");
+  data.append("novaposhta[cityNameFormat]", "short");
+  data.append("novaposhta[WarehouseNumber]", adressNp);
 
-  let myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+  const headers = new Headers();
+  headers.append("Form-Api-Key", "DKooe-JJggzbJC-sfXadyfYJdFk3r9eyulTnIE7yeI8JyJf7dHeEJjToaemPWwmiv2sdJp");
 
-  let raw = JSON.stringify({
-    name: name2,
-    surname: surname2,
-    mail: mail2,
-    phone: phone2,
-    price: price,
-    delivery: delivery,
-    adress: adress,
-  });
-
-  let requestOptions = {
+  fetch("https://fotka.salesdrive.me/handler/", {
     method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
-  let res = await fetch("https://api.fotka.in.ua/crm-add", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
-
-  res = await res.json();
-  console.log(res);
+    mode: 'no-cors',
+    headers: headers,
+    body: data
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 }
+
+const nameMask = new IMask(nameInput, {
+  mask: /^[А-ЯЁІЇҐа-яёіїґ']+$/,
+  prepare: function(value, masked) {
+    return value;
+  }
+});
+
+const surnameMask = new IMask(surnameInput, {
+  mask: /^[А-ЯЁІЇҐа-яёіїґ']+$/,
+  prepare: function(value, masked) {
+    return value;
+  }
+});
+
+const phoneMask = new IMask(phoneInput, {
+  mask: "+{38}(000)000-00-00"
+});
+
+const checkbox = document.getElementById('c1');
+const button = document.querySelector('.upload-btn');
+
+function toggleButton() {
+  if (checkbox.checked) {
+    button.classList.remove('disabled');
+    button.removeAttribute('disabled');
+  } else {
+    button.classList.add('disabled');
+    button.setAttribute('disabled', 'disabled');
+  }
+}
+
+checkbox.addEventListener('change', toggleButton);
+
+
+
+var dropzone = document.getElementById('dropzone');
+
+function handleDragOver() {
+  addCard()
+}
+
+dropzone.addEventListener('dragover', handleDragOver, false);
+dropzone.addEventListener('drop', handleDragOver, false);
+
+const apiKeyS = process.env.API_KEY;
+
+console.log(apiKeyS);

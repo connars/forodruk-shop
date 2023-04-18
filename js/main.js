@@ -8,23 +8,17 @@ function toggle() {
 }
 
 function animate() {
-
     if (header.matches('.active')){
-        lineOne.style.transform = "rotate(45deg)";
-        lineTwo.style.transform = "rotate(-45deg)";
-        lineOne.style.position = "absolute";
-        lineTwo.style.position = "absolute";
-        menu.style.gap = "0px";
+        lineOne.style.width= "10px";
     } else {
-        lineOne.style.position = "static";
+        lineOne.style.width= "25px";
         lineTwo.style.position = "static";
-        menu.style.gap = "8px";
-        lineOne.style.transform = "rotate(0deg)";
-        lineTwo.style.transform = "rotate(0deg)";
     }
-
 }
 
+document.querySelectorAll('.header__nav-link').forEach(headerLink => {
+    headerLink.addEventListener('click', toggle);
+})
 menu.addEventListener('click', toggle);
 menu.addEventListener('click', animate);
 
@@ -70,25 +64,6 @@ firstTheme.addEventListener('click', changeTheme2);
 
 // changeTheme()
 
-let standart = document.querySelector('.slide-one');
-let unstandart = document.querySelector('.slide-two');
-let currentSlideValue = document.querySelector('.current__slide');
-let changeSlideValueLeft = document.querySelector('.swiper-button-prev3');
-let changeSlideValueRight = document.querySelector('.swiper-button-next3');
-
-function changeSlideTitle() {
-    if(standart.matches('.swiper-slide-active')) {
-        currentSlideValue.innerHTML = 'Стандартні <br/> розміри';
-        changeSlideValueLeft.style.opacity = "0.6";
-        changeSlideValueRight.style.opacity = "1";
-    } else {
-        currentSlideValue.innerHTML = 'Нестандартні <br/> розміри';
-        changeSlideValueLeft.style.opacity = "1";
-        changeSlideValueRight.style.opacity = "0.6";
-    } 
-}
-
-setInterval(changeSlideTitle,300);
 
 let image = document.getElementById("image-file").value;
 
